@@ -23,6 +23,7 @@ python main.py
 ## Contributors
 
 Gabriel Gausachs    1604373@uab.cat
+
 Arnau Gómez         1601488@uab.cat
 
 
