@@ -21,7 +21,10 @@ python main.py
 
 
 ## Contributors
-Write here the name and UAB mail of the group members
+
+Gabriel Gausachs    1604373@uab.cat
+Arnau Gómez         1601488@uab.cat
+
 
 Xarxes Neuronals i Aprenentatge Profund
 Grau de __Write here the name of your estudies (Artificial Intelligence, Data Engineering or Computational Mathematics & Data analyitics)__, 
