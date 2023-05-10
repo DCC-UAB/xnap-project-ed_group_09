@@ -28,5 +28,5 @@ Arnau Gómez         1601488@uab.cat
 
 
 Xarxes Neuronals i Aprenentatge Profund
-Grau de __Write here the name of your estudies (Artificial Intelligence, Data Engineering or Computational Mathematics & Data analyitics)__, 
+Grau de Data Engineering, 
 UAB, 2023
