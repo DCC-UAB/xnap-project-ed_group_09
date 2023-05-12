@@ -24,13 +24,7 @@ python main.py
 
 Gabriel Gausachs Fernández de los Ronderos      1604373@uab.cat
 
-<<<<<<< HEAD
-Arnau Gómez Martí                               1601488@uab.cat 
-=======
-Arnau Gómez Martí   1601488@uab.cat
-
-
->>>>>>> 70011a8702fe2833586c7143cc4f5c223e928cea
+Arnau Gómez Martí                               1601488@uab.cat
 
 
 Xarxes Neuronals i Aprenentatge Profund
