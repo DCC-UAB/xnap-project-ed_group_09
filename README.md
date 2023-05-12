@@ -24,7 +24,9 @@ python main.py
 
 Gabriel Gausachs    1604373@uab.cat
 
-Arnau Gómez         1601488@uab.cat
+Arnau Gómez Martí   1601488@uab.cat
+
+
 
 
 Xarxes Neuronals i Aprenentatge Profund
