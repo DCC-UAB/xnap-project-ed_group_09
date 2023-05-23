@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 #from imgaug import augmenters as iaa
 from pathlib import Path
-import cv2
 import pandas as pd
 from PIL import Image
 
@@ -78,8 +77,8 @@ class FaceDataset(Dataset):
           img=self.transform(img)
           return img,age
         else:
-          img = cv2.imread(str(img_path), 1)
-          img = cv2.resize(img, (self.img_size, self.img_size))
+          img = Image.open(img_path)
+          img = img.resize((self.img_size, self.img_size))
           img = self.transform(img).astype(np.float32)
           return torch.from_numpy(np.transpose(img, (2, 0, 1))),age
         #fem np.transpose perque torch espera que les imatges siguin (canal, altura, amplada)
