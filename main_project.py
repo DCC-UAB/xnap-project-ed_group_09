@@ -28,3 +28,4 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 import wandb
 from lectura_dataset import FaceDataset
+from train_mse import *
