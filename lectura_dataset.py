@@ -1,3 +1,4 @@
+#DATA_READ
 from torch.utils.data import Dataset
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
