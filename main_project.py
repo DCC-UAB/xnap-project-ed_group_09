@@ -20,7 +20,7 @@ import copy
 print("PyTorch Version: ",torch.__version__)
 print("Torchvision Version: ",torchvision.__version__)
 
-%matplotlib inline
+#%matplotlib inline
 
 
 # Detect if we have a GPU available
