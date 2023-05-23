@@ -2,12 +2,14 @@
 from torch.utils.data import Dataset
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-from imgaug import augmenters as iaa
+#from imgaug import augmenters as iaa
 from pathlib import Path
 import cv2
 import pandas as pd
 from PIL import Image
 
+
+"""
 class ImgAugTransform:
     def __init__(self):
         self.aug = iaa.Sequential([
@@ -29,7 +31,7 @@ class ImgAugTransform:
         img = np.array(img)
         img = self.aug.augment_image(img)
         return img
-
+"""
 class FaceDataset(Dataset):
     def __init__(self, data_dir, data_type, img_size=224, augment=None,transf=None):
         assert(data_type in ("train", "valid", "test"))
@@ -40,8 +42,8 @@ class FaceDataset(Dataset):
 
         if augment==0:
           self.transform = lambda i: i #no modifica la imatge
-        elif augment==1:
-          self.transform = ImgAugTransform() 
+        #elif augment==1:
+          #self.transform = ImgAugTransform() 
           #aplica una serie de transformacions: (afegeix soroll, desenfoca, rotació..)
           #ajuda al model a generalitzar, a regularitzar i que no es centri en patrons especifics.
         else:
