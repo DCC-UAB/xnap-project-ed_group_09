@@ -30,8 +30,8 @@ import wandb
 from lectura_dataset import FaceDataset
 from train_mse import *
 
-#url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
-#datasets.utils.download_and_extract_archive(url, './AppaRealAge')
+url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
+datasets.utils.download_and_extract_archive(url, './AppaRealAge')
 
 
 """wandb.init(
