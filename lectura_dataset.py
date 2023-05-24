@@ -52,7 +52,7 @@ class FaceDataset(Dataset):
         self.y = []
         df = pd.read_csv(str(pathcsv))
         #ignore_path = Path(__file__).resolve().parent.joinpath("ignore_list.csv")
-        ignore_img_names = list(pd.read_csv('./AppaRealAge/appa-real-release/ignore_list.csv')['img_name'].values)
+        ignore_img_names = list(pd.read_csv('./ignore_list.csv')['img_name'].values)
 
         for _, row in df.iterrows():
             img_name = row["file_name"]
