@@ -1,5 +1,5 @@
 import torch.nn as nn
-from torchvision import datasets, models,
+from torchvision import datasets, models
 #import pretrainedmodels
 #import pretrainedmodels.utils
 
