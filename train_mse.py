@@ -1,6 +1,8 @@
 import wandb
 import time
 import torch
+import copy
+
 def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_project=None,name_run=None):
     wandb.init(project=name_project,name=name_run)
     since = time.time()
