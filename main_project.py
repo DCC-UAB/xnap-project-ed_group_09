@@ -73,7 +73,7 @@ criterion = nn.MSELoss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
-num_epochs = 2
+num_epochs = 80
 
 params_to_update = []
 for name,param in model.named_parameters():
