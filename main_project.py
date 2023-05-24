@@ -88,7 +88,7 @@ dataloaders_dict['train']=train_loader
 dataloaders_dict['val']=val_loader
 
 # Train and evaluate
-model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run)
+model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
 ruta_archivo = 'model_1.pth'
 
