@@ -12,30 +12,45 @@ from torch.utils.data import DataLoader
 import torch.backends.cudnn as cudnn
 from torch.optim.lr_scheduler import StepLR
 from collections import OrderedDict
-
 import matplotlib.pyplot as plt
 import time
 import os
 import copy
+import wandb
+from lectura_dataset import FaceDataset,mostrar_imagen
+from train_mse import *
+from funcio_models import *
+
 print("PyTorch Version: ",torch.__version__)
 print("Torchvision Version: ",torchvision.__version__)
 
 #%matplotlib inline
 
-
 # Detect if we have a GPU available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-import wandb
-from lectura_dataset import FaceDataset,mostrar_imagen
-from train_mse import *
 
 #url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
 #datasets.utils.download_and_extract_archive(url, '../AppaRealAge')
 
+"""Creem projecte wandb"""
+wandb.init(
+    # set the wandb project where this run will be logged
+    project="AP_ct_rt34_mse_80",
+    
+    # track hyperparameters and run metadata
+    config={
+    "learning_rate": 0.001,
+    "architecture": "Resnet34",
+    "dataset": "AppaReal",
+    "epochs": 80,
+    }
+)
+
+
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
                                        transforms.ToTensor()])
+
 data_dir = "../AppaRealAge/appa-real-release"
 
 train_dataset = FaceDataset(data_dir, "train",augment=2,transf=custom_transform)
@@ -46,20 +61,31 @@ val_dataset = FaceDataset(data_dir, "valid",augment=2,transf=custom_transform)
 val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
                         num_workers=2, drop_last=False)
 
-mostrar_imagen(val_dataset,8)
-print(val_dataset.y[8])
+model = get_model_fe()
+# Send the model to GPU
+model = model.to(device)
 
+name_project='AP_ct_rt34_mse_80'
+name_run='feature_extraction'
 
-"""wandb.init(
-    # set the wandb project where this run will be logged
-    project="appa_real_customtransform_resnet34_mse_15",
-    
-    # track hyperparameters and run metadata
-    config={
-    "learning_rate": 0.001,
-    "architecture": "Resnet34",
-    "dataset": "ImageNet",
-    "epochs": 15,
-    }
-)
-"""
+# Setup the loss fxn
+criterion = nn.MSELoss()
+#criterion = nn.CrossEntropyLoss()
+
+# Number of epochs to train for 
+num_epochs = 2
+
+params_to_update = []
+for name,param in model.named_parameters():
+    if param.requires_grad == True:
+        params_to_update.append(param)
+
+#optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
+optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+
+dataloaders_dict = {}
+dataloaders_dict['train']=train_loader
+dataloaders_dict['val']=val_loader
+
+# Train and evaluate
+model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run)
