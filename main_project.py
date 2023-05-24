@@ -89,3 +89,8 @@ dataloaders_dict['val']=val_loader
 
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run)
+
+ruta_archivo = 'model_1.pth'
+
+# Guarda el modelo en el archivo
+torch.save(model.state_dict(), ruta_archivo)
