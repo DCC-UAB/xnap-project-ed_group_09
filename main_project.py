@@ -27,11 +27,27 @@ print("Torchvision Version: ",torchvision.__version__)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 import wandb
-from lectura_dataset import FaceDataset
+from lectura_dataset import FaceDataset,mostrar_imagen
 from train_mse import *
 
-url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
-datasets.utils.download_and_extract_archive(url, '../AppaRealAge')
+#url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
+#datasets.utils.download_and_extract_archive(url, '../AppaRealAge')
+
+custom_transform = transforms.Compose([transforms.Resize((128, 128)),
+                                       transforms.RandomCrop((120, 120)),
+                                       transforms.ToTensor()])
+data_dir = "../AppaRealAge/appa-real-release"
+
+train_dataset = FaceDataset(data_dir, "train",augment=2,transf=custom_transform)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True,
+                          num_workers=2, drop_last=True)
+
+val_dataset = FaceDataset(data_dir, "valid",augment=2,transf=custom_transform)
+val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
+                        num_workers=2, drop_last=False)
+
+mostrar_imagen(val_dataset,8)
+print(val_dataset.y[8])
 
 
 """wandb.init(
