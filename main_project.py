@@ -33,7 +33,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #datasets.utils.download_and_extract_archive(url, '../AppaRealAge')
 
 """Creem projecte wandb"""
-"""
+
 wandb.init(
     # set the wandb project where this run will be logged
     project="AP_ct_rt34_mse_80",
@@ -95,5 +95,5 @@ ruta_archivo = 'model_1.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
-"""
+
 wandb.finish()
