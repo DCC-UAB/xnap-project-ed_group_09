@@ -36,14 +36,14 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 wandb.init(
     # set the wandb project where this run will be logged
-    project="AP_ct_rt34_mse_80",
+    project="AP_ct_rt34_mse_20",
     
     # track hyperparameters and run metadata
     config={
     "learning_rate": 0.001,
     "architecture": "Resnet34",
     "dataset": "AppaReal",
-    "epochs": 80,
+    "epochs": 20,
     }
 )
 
@@ -72,15 +72,15 @@ model = get_model_fe()
 # Send the model to GPU
 model = model.to(device)
 
-name_project='AP_ct_rt34_mse_80'
-name_run='feature_extraction'
+name_project='AP_ct_rt34_mse_20'
+name_run='fe'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
-num_epochs = 80
+num_epochs = 20
 
 params_to_update = []
 for name,param in model.named_parameters():
