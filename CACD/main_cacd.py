@@ -47,7 +47,7 @@ wandb.init(
     "epochs": 175,
     }
 )
-
+"""
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
                                        transforms.ToTensor()])
@@ -91,27 +91,27 @@ print('\nDataLoaders correctes')
 print('\nEntrenem el model\n')
 
 
-model = get_model('feature_extraction')
+model = get_model('finetunning')
 # Send the model to GPU
 model = model.to(device)
 
 name_project='CACD executions'
-name_run='feature_extraction'
+name_run='finetunning'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
-num_epochs = 175
+num_epochs = 15
 
 params_to_update = []
 for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-#optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
+#optimizer_ft = optim.Adam(params_to_update, lr=0.001)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
@@ -120,10 +120,10 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_fe.pth'
+ruta_archivo = 'model_finetunning.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
-"""
+
 wandb.finish()
 
