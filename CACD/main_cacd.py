@@ -27,15 +27,15 @@ print("Torchvision Version: ",torchvision.__version__)
 # Detect if we have a GPU available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-TRAIN_CSV_PATH = './cacd_train.csv'
-VALID_CSV_PATH = './cacd_valid.csv'
-TEST_CSV_PATH = './cacd_test.csv'
-IMAGE_PATH = '/shared_datasets/CACD/centercropped/jpg'
+TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_train.csv'
+VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_valid.csv'
+TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_test.csv'
+IMAGE_PATH = '/home/alumne/datasets/CACD2000'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
 
-wandb.init(
+"""wandb.init(
     # set the wandb project where this run will be logged
     project="AP_ct_rt34_mse_20",
     
@@ -46,7 +46,7 @@ wandb.init(
     "dataset": "AppaReal",
     "epochs": 20,
     }
-)
+)"""
 
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
@@ -90,7 +90,7 @@ print('\nDataLoaders correctes')
 
 print('\nEntrenem el model')
 
-
+"""
 model = get_model('feature_extraction')
 # Send the model to GPU
 model = model.to(device)
@@ -126,3 +126,5 @@ ruta_archivo = 'model_1.pth'
 torch.save(model.state_dict(), ruta_archivo)
 
 wandb.finish()
+
+"""
