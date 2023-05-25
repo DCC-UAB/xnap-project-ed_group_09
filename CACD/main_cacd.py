@@ -34,7 +34,7 @@ IMAGE_PATH = '/home/alumne/datasets/CACD2000'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
-
+"""
 wandb.init(
     # set the wandb project where this run will be logged
     project="CACD executions",
@@ -124,6 +124,6 @@ ruta_archivo = 'model_fe.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
-
+"""
 wandb.finish()
 
