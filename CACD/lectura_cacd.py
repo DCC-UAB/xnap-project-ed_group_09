@@ -20,7 +20,7 @@ class CACDDataset(Dataset):
         self.csv_path = csv_path
         self.img_names = df['file'].values
 
-        self.y = df['age'].values això es per si fem cross_entropy
+        self.y = df['age'].values #això es per si fem cross_entropy
         #self.y= df['file'].str.split('_').str[0].values
         self.transform = transform
 
