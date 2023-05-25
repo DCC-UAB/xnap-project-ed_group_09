@@ -10,15 +10,6 @@ from torchvision import transforms
 from PIL import Image
 
 
-
-TRAIN_CSV_PATH = './cacd_train.csv'
-VALID_CSV_PATH = './cacd_valid.csv'
-TEST_CSV_PATH = './cacd_test.csv'
-IMAGE_PATH = '/shared_datasets/CACD/centercropped/jpg'
-
-BATCH_SIZE = 256
-
-
 class CACDDataset(Dataset):
     """Custom Dataset for loading CACD face images"""
 

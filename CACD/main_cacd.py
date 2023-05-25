@@ -27,6 +27,11 @@ print("Torchvision Version: ",torchvision.__version__)
 # Detect if we have a GPU available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+TRAIN_CSV_PATH = './cacd_train.csv'
+VALID_CSV_PATH = './cacd_valid.csv'
+TEST_CSV_PATH = './cacd_test.csv'
+IMAGE_PATH = '/shared_datasets/CACD/centercropped/jpg'
+BATCH_SIZE=256
 
 """Creem projecte wandb"""
 
