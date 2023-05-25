@@ -20,3 +20,9 @@ def get_model(tipus=None):
         num_features = model.fc.in_features
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
+    
+
+#model.fc = nn.Sequential(
+        #nn.Dropout(p=0.5),
+        #nn.Linear(in_features=512, out_features=num_classes)
+#    )
