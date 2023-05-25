@@ -8,8 +8,8 @@ import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 
-from train import *
-from test import *
+from exemple_profe.train import *
+from exemple_profe.test import *
 from utils.utils import *
 from tqdm.auto import tqdm
 
