@@ -37,14 +37,14 @@ BATCH_SIZE=256
 
 wandb.init(
     # set the wandb project where this run will be logged
-    project="prova_famosos",
+    project="CACD executions",
     
     # track hyperparameters and run metadata
     config={
     "learning_rate": 0.001,
     "architecture": "Resnet34",
-    "dataset": "famosos",
-    "epochs": 15,
+    "dataset": "CACD",
+    "epochs": 175,
     }
 )
 
@@ -88,22 +88,22 @@ test_loader = DataLoader(dataset=test_dataset,
 
 print('\nDataLoaders correctes')
 
-print('\nEntrenem el model')
+print('\nEntrenem el model\n')
 
 
 model = get_model('feature_extraction')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='prova_famosos'
-name_run='fe'
+name_project='CACD executions'
+name_run='feature_extraction'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
-num_epochs = 15
+num_epochs = 175
 
 params_to_update = []
 for name,param in model.named_parameters():
@@ -120,7 +120,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_1.pth'
+ruta_archivo = 'model_fe.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
