@@ -35,18 +35,18 @@ BATCH_SIZE=256
 
 """Creem projecte wandb"""
 
-"""wandb.init(
+wandb.init(
     # set the wandb project where this run will be logged
-    project="AP_ct_rt34_mse_20",
+    project="prova_famosos",
     
     # track hyperparameters and run metadata
     config={
     "learning_rate": 0.001,
     "architecture": "Resnet34",
-    "dataset": "AppaReal",
-    "epochs": 20,
+    "dataset": "famosos",
+    "epochs": 15,
     }
-)"""
+)
 
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
@@ -90,12 +90,12 @@ print('\nDataLoaders correctes')
 
 print('\nEntrenem el model')
 
-"""
+
 model = get_model('feature_extraction')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='AP_ct_rt34_mse_20'
+name_project='prova_famosos'
 name_run='fe'
 
 # Setup the loss fxn
@@ -103,7 +103,7 @@ criterion = nn.MSELoss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
-num_epochs = 20
+num_epochs = 15
 
 params_to_update = []
 for name,param in model.named_parameters():
@@ -127,4 +127,3 @@ torch.save(model.state_dict(), ruta_archivo)
 
 wandb.finish()
 
-"""
