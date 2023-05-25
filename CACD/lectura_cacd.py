@@ -48,42 +48,4 @@ class CACDDataset(Dataset):
         return self.y.shape[0]
 
 
-custom_transform = transforms.Compose([transforms.Resize((128, 128)),
-                                       transforms.RandomCrop((120, 120)),
-                                       transforms.ToTensor()])
 
-train_dataset = CACDDataset(csv_path=TRAIN_CSV_PATH,
-                            img_dir=IMAGE_PATH,
-                            transform=custom_transform)
-
-
-custom_transform2 = transforms.Compose([transforms.Resize((128, 128)),
-                                       transforms.CenterCrop((120, 120)),
-                                       transforms.ToTensor()])
-
-test_dataset = CACDDataset(csv_path=TEST_CSV_PATH,
-                           img_dir=IMAGE_PATH,
-                           transform=custom_transform2)
-
-valid_dataset = CACDDataset(csv_path=VALID_CSV_PATH,
-                            img_dir=IMAGE_PATH,
-                            transform=custom_transform2)
-
-print('\nLectura Datasets correcte')
-
-train_loader = DataLoader(dataset=train_dataset,
-                          batch_size=256,
-                          shuffle=True,
-                          num_workers=4)
-
-valid_loader = DataLoader(dataset=valid_dataset,
-                          batch_size=256,
-                          shuffle=False,
-                          num_workers=4)
-
-test_loader = DataLoader(dataset=test_dataset,
-                         batch_size=256,
-                         shuffle=False,
-                         num_workers=4)
-
-print('\nDataLoaders correctes')
