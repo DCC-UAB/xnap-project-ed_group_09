@@ -85,6 +85,8 @@ test_loader = DataLoader(dataset=test_dataset,
                          shuffle=False,
                          num_workers=4)
 
+
+
 print('\nDataLoaders correctes')
 
 print('\nEntrenem el model\n')
@@ -111,6 +113,7 @@ for name,param in model.named_parameters():
 
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
 optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+start_epoch=0
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
