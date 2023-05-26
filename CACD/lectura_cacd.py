@@ -26,15 +26,19 @@ class CACDDataset(Dataset):
 
     def __getitem__(self, index):
         try:
-            img = Image.open(os.path.join(self.img_dir,
-                                        self.img_names[index]))
+            img_path = os.path.join(self.img_dir, self.img_names[index])
+            if os.path.exists(img_path):  # Verificar si la imagen existe en el directorio
+                img = Image.open(img_path)
 
-            if self.transform is not None:
-                img = self.transform(img)
+                if self.transform is not None:
+                    img = self.transform(img)
 
-            label = self.y[index]
+                label = self.y[index]
 
-            return img, label
+                return img, label
+            else:
+            # Si la imagen no existe, devuelve una tupla vacía
+                return None, None
         except:
             pass
 
