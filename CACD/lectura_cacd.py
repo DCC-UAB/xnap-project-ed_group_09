@@ -10,7 +10,7 @@ from torchvision import transforms
 from PIL import Image
 import dlib
 import numpy as np
-
+import cv2
 
 class CACDDataset(Dataset):
     """Custom Dataset for loading CACD face images"""
@@ -28,10 +28,8 @@ class CACDDataset(Dataset):
 
     def __getitem__(self, index):
         detector = dlib.get_frontal_face_detector()
-        img_path = os.path.join(self.img_dir, self.img_names[index])
-        img = Image.open(img_path)
-        img_np = np.array(img)
-        detected = detector(img_np, 1)
+        img = cv2.imread(os.path.join(self.img_dir, self.img_names[index]))
+        detected = detector(img, 1)
 
         if len(detected) == 1:  # skip if there are 0 or more than 1 face
             for idx, face in enumerate(detected):
@@ -43,20 +41,20 @@ class CACDDataset(Dataset):
 
                 if(diff > 0):
                     if not diff % 2:  # symmetric
-                        tmp = img_np[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
+                        tmp = img[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
                                 (face.left()-tol-int(diff/2)):(face.right()+tol+int(diff/2)),
                                 :]
                     else:
-                        tmp = img_np[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
+                        tmp = img[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
                                 (face.left()-tol-int((diff-1)/2)):(face.right()+tol+int((diff+1)/2)),
                                 :]
                 if(diff <= 0):
                     if not diff % 2:  # symmetric
-                        tmp = img_np[(face.top()-tol-int(diff/2)-up_down):(face.bottom()+tol+int(diff/2)-up_down),
+                        tmp = img[(face.top()-tol-int(diff/2)-up_down):(face.bottom()+tol+int(diff/2)-up_down),
                                 (face.left()-tol):(face.right()+tol),
                                 :]
                     else:
-                        tmp = img_np[(face.top()-tol-int((diff-1)/2)-up_down):(face.bottom()+tol+int((diff+1)/2)-up_down),
+                        tmp = img[(face.top()-tol-int((diff-1)/2)-up_down):(face.bottom()+tol+int((diff+1)/2)-up_down),
                                 (face.left()-tol):(face.right()+tol),
                                 :]
 
