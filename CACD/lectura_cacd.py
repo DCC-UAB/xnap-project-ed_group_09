@@ -30,7 +30,8 @@ class CACDDataset(Dataset):
         detector = dlib.get_frontal_face_detector()
         img_path = os.path.join(self.img_dir, self.img_names[index])
         img = Image.open(img_path)
-        detected = detector(img, 1)
+        img_np = np.array(img)
+        detected = detector(img_np, 1)
 
         if len(detected) == 1:  # skip if there are 0 or more than 1 face
             for idx, face in enumerate(detected):
