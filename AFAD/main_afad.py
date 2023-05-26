@@ -30,11 +30,11 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_train.csv'
 VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_valid.csv'
 TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_test.csv'
-IMAGE_PATH = '/home/alumne/datasets/AFAD_FULL'
+IMAGE_PATH = '/home/alumne/datasets/AFAD_Full'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
-"""
+
 wandb.init(
     # set the wandb project where this run will be logged
     project="AFAD executions",
@@ -43,11 +43,11 @@ wandb.init(
     config={
     "learning_rate": 0.001,
     "architecture": "Resnet34",
-    "dataset": "CACD",
-    "epochs": 175,
+    "dataset": "AFAD",
+    "epochs": 15,
     }
 )
-"""
+
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
                                        transforms.ToTensor()])
@@ -90,12 +90,12 @@ print('\nDataLoaders correctes')
 print('\nEntrenem el model\n')
 
 
-model = get_model('finetunning')
+model = get_model('feature extraction')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='CACD executions'
-name_run='finetunning'
+name_project='AFAD executions'
+name_run='feature extraction'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -109,8 +109,8 @@ for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-#optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+#optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
+optimizer_ft = optim.Adam(params_to_update, lr=0.001)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
@@ -119,7 +119,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_finetunning.pth'
+ruta_archivo = 'model_feature_extraction.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
