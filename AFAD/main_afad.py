@@ -97,7 +97,7 @@ model = get_model('feature extraction')
 model = model.to(device)
 
 name_project='AFAD executions'
-name_run='feature extraction'
+name_run='feature extraction_scheduler'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -122,7 +122,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_feature_extraction.pth'
+ruta_archivo = 'model_feature_extraction_sch.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)

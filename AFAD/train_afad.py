@@ -8,7 +8,7 @@ from torch.optim.lr_scheduler import StepLR
 def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_project=None,name_run=None,device=None):
     wandb.init(project=name_project,name=name_run)
     since = time.time()
-    #scheduler = StepLR(optimizer, step_size=5, gamma=0.2)
+    scheduler = StepLR(optimizer, step_size=5, gamma=0.2)
 
     losses = {"train": [], "val": []}
     best_loss=10000000000
@@ -53,7 +53,7 @@ def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_
                     optimizer.zero_grad()
                     loss.backward()
                     optimizer.step()
-                    #scheduler.step()
+                    scheduler.step()
                   else:
                     outputs = model(inputs)
                     outputs = outputs.float()
@@ -73,9 +73,9 @@ def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_
                 best_loss = epoch_loss
                 best_model_wts = copy.deepcopy(model.state_dict())
 
-        wandb.log({"train_loss": losses['train'][-1], "val_loss": losses['val'][-1]})
+        wandb.log({"Loss train": losses['train'][-1], "Loss valid": losses['val'][-1]})
         current_lr = optimizer.param_groups[0]['lr']
-        wandb.log({"learning_rate": current_lr})
+        wandb.log({"Learning Rate": current_lr})
 
 
     time_elapsed = time.time() - since
