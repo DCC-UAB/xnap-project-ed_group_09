@@ -30,7 +30,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_train.csv'
 VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_valid.csv'
 TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_test.csv'
-IMAGE_PATH = '/home/alumne/datasets/CACD2000'
+IMAGE_PATH = '/home/alumne/datasets/CACD2000-centered'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
@@ -91,12 +91,12 @@ print('\nDataLoaders correctes')
 print('\nEntrenem el model\n')
 
 
-model = get_model('finetunning')
+model = get_model('fe')
 # Send the model to GPU
 model = model.to(device)
 
 name_project='CACD executions'
-name_run='finetunning'
+name_run='fe_preprocessat'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -110,8 +110,8 @@ for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-#optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+#optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
+optimizer_ft = optim.Adam(params_to_update, lr=0.001)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
@@ -120,7 +120,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_finetunning.pth'
+ruta_archivo = 'model_fe_preprocessat.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
