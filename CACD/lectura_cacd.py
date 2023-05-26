@@ -25,15 +25,18 @@ class CACDDataset(Dataset):
         self.transform = transform
 
     def __getitem__(self, index):
-        img = Image.open(os.path.join(self.img_dir,
-                                      self.img_names[index]))
+        try:
+            img = Image.open(os.path.join(self.img_dir,
+                                        self.img_names[index]))
 
-        if self.transform is not None:
-            img = self.transform(img)
+            if self.transform is not None:
+                img = self.transform(img)
 
-        label = self.y[index]
+            label = self.y[index]
 
-        return img, label
+            return img, label
+        except:
+            pass
 
     def __len__(self):
         return self.y.shape[0]
