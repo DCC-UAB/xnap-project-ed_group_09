@@ -30,7 +30,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_train.csv'
 VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_valid.csv'
 TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_test.csv'
-IMAGE_PATH = '/home/alumne/datasets/AFAD_Full'
+IMAGE_PATH = '/home/alumne/datasets/AFAD-Full'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
