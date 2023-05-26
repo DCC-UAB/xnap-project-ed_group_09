@@ -97,7 +97,7 @@ model = get_model('feature extraction')
 model = model.to(device)
 
 name_project='AFAD executions'
-name_run='feature extraction_scheduler_s7_g0.1'
+name_run='feature extraction_scheduler_s5_g0.1_lr0.01'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -112,7 +112,7 @@ for name,param in model.named_parameters():
         params_to_update.append(param)
 
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+optimizer_ft = optim.Adam(params_to_update, lr=0.01)
 start_epoch=0
 
 dataloaders_dict = {}
