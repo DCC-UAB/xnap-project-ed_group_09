@@ -43,20 +43,20 @@ class CACDDataset(Dataset):
 
                 if(diff > 0):
                     if not diff % 2:  # symmetric
-                        tmp = img[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
+                        tmp = img_np[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
                                 (face.left()-tol-int(diff/2)):(face.right()+tol+int(diff/2)),
                                 :]
                     else:
-                        tmp = img[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
+                        tmp = img_np[(face.top()-tol-up_down):(face.bottom()+tol-up_down),
                                 (face.left()-tol-int((diff-1)/2)):(face.right()+tol+int((diff+1)/2)),
                                 :]
                 if(diff <= 0):
                     if not diff % 2:  # symmetric
-                        tmp = img[(face.top()-tol-int(diff/2)-up_down):(face.bottom()+tol+int(diff/2)-up_down),
+                        tmp = img_np[(face.top()-tol-int(diff/2)-up_down):(face.bottom()+tol+int(diff/2)-up_down),
                                 (face.left()-tol):(face.right()+tol),
                                 :]
                     else:
-                        tmp = img[(face.top()-tol-int((diff-1)/2)-up_down):(face.bottom()+tol+int((diff+1)/2)-up_down),
+                        tmp = img_np[(face.top()-tol-int((diff-1)/2)-up_down):(face.bottom()+tol+int((diff+1)/2)-up_down),
                                 (face.left()-tol):(face.right()+tol),
                                 :]
 
