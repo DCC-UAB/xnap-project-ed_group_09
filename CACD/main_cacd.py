@@ -75,11 +75,16 @@ train_loader = DataLoader(dataset=train_dataset,
                           batch_size=256,
                           shuffle=True,
                           num_workers=4)
+print("TRAIN")
+print(len(train_loader.dataset))
 
 valid_loader = DataLoader(dataset=valid_dataset,
                           batch_size=256,
                           shuffle=False,
                           num_workers=4)
+
+print("VALID")
+print(len(valid_loader.dataset))
 
 test_loader = DataLoader(dataset=test_dataset,
                          batch_size=256,
