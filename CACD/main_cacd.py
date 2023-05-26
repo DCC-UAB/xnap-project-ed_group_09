@@ -30,7 +30,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_train.csv'
 VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_valid.csv'
 TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_test.csv'
-IMAGE_PATH = '/home/alumne/datasets/CACD2000-centered'
+IMAGE_PATH = '/home/alumne/datasets/CACD2000'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
@@ -75,7 +75,7 @@ train_loader = DataLoader(dataset=train_dataset,
                           batch_size=256,
                           shuffle=True,
                           num_workers=4)
-print("TRAIN")
+print("TRAIN len")
 print(len(train_loader.dataset))
 
 valid_loader = DataLoader(dataset=valid_dataset,
@@ -83,7 +83,7 @@ valid_loader = DataLoader(dataset=valid_dataset,
                           shuffle=False,
                           num_workers=4)
 
-print("VALID")
+print("VALID len")
 print(len(valid_loader.dataset))
 
 test_loader = DataLoader(dataset=test_dataset,
