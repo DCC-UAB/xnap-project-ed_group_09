@@ -92,12 +92,12 @@ print('\nDataLoaders correctes')
 print('\nEntrenem el model\n')
 
 
-model = get_model('feature extraction')
+model = get_model('finetunning')
 # Send the model to GPU
 model = model.to(device)
 
 name_project='AFAD executions'
-name_run='feature extraction_scheduler_s5_g0.1_lr0.01'
+name_run='finetunning_scheduler_s5_g0.1_lr0.1'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -111,8 +111,8 @@ for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-#optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-optimizer_ft = optim.Adam(params_to_update, lr=0.01)
+optimizer_ft = optim.Adam(model.parameters(), lr=0.1)
+#optimizer_ft = optim.Adam(params_to_update, lr=0.01)
 start_epoch=0
 
 dataloaders_dict = {}
@@ -122,7 +122,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_feature_extraction_sch2.pth'
+ruta_archivo = 'model_finetunning_sch.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
