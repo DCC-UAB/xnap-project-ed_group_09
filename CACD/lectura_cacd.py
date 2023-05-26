@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 from PIL import Image
 import dlib
-import np
+import numpy as np
 
 
 class CACDDataset(Dataset):
