@@ -62,6 +62,12 @@ class CACDDataset(Dataset):
                     img = Image.fromarray(np.uint8(tmp))
                     img = img.resize((120, 120), Image.ANTIALIAS)
                     img = np.array(img)
+                    if self.transform is not None:
+                        img = self.transform(img)
+
+                    label = self.y[index]
+
+                    return img, label
                     
                 except ValueError:
                     if self.transform is not None:
@@ -70,13 +76,15 @@ class CACDDataset(Dataset):
                     label = self.y[index]
 
                     return img, label
+        else:
             
-        if self.transform is not None:
-            img = self.transform(img)
+            
+            if self.transform is not None:
+                img = self.transform(img)
 
-        label = self.y[index]
+            label = self.y[index]
 
-        return img, label
+            return img, label
 
 
             
