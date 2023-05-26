@@ -78,16 +78,6 @@ class CACDDataset(Dataset):
         return img, label
 
 
-
-
-
-
-        if self.transform is not None:
-            img = self.transform(img)
-
-        label = self.y[index]
-
-        return img, label
             
 
     def __len__(self):
