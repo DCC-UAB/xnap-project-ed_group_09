@@ -61,7 +61,10 @@ class CACDDataset(Dataset):
                                 :]
 
                 try:
-                    img = np.array(Image.fromarray(np.uint8(tmp)).resize((120, 120), Image.ANTIALIAS))
+                    img = Image.fromarray(np.uint8(tmp))
+                    img = img.resize((120, 120), Image.ANTIALIAS)
+                    img = np.array(img)
+                    
                 except ValueError:
                     if self.transform is not None:
                         img = self.transform(img)
