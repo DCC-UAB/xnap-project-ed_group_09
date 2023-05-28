@@ -117,7 +117,7 @@ num_epochs = 15
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.1)
 #optimizer_ft = optim.Adam(params_to_update, lr=0.01)
 
-optimizer_ft=optim.SGD(model.parameters(), lr=0.0005)
+optimizer_ft=optim.SGD(model.parameters(), lr=0.0005, weight_decay=0.001)
 
 
 dataloaders_dict = {}
