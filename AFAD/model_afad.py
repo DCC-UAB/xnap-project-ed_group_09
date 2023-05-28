@@ -18,9 +18,9 @@ def get_model(tipus=None):
         model = models.vgg16(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         set_parameter_requires_grad(model,True)
         num_features = model.fc.in_features
-        model.fc = nn.Sequential(
+        model.classifier = nn.Sequential(
             nn.Dropout(p=0.5),
-            nn.Linear(in_features=num_features, out_features=1))
+            nn.Linear(num_features, 1))
         return model
     
 
