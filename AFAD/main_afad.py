@@ -100,7 +100,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='Entrenament AFAD_2'
-name_run='fe amb lr0.001, wd0.001 i dropout'
+name_run='fe amb lr0.001, wd0.001, dropout i vgg16'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
