@@ -100,7 +100,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='Entrenament AFAD_2'
-name_run='fe amb lr0.001, wd0.001, dropout i vgg16'
+name_run='fe amb lr0.0001 dropout i vgg16'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -117,7 +117,7 @@ num_epochs = 15
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.1)
 #optimizer_ft = optim.Adam(params_to_update, lr=0.01)
 
-optimizer_ft=optim.SGD(model.parameters(), lr=0.001, weight_decay=0.001)
+optimizer_ft=optim.SGD(model.parameters(), lr=0.0001)
 
 
 dataloaders_dict = {}
