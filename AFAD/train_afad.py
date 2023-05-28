@@ -14,6 +14,7 @@ def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_
 
     # we will keep a copy of the best weights so far according to validation accuracy
     best_model_wts = copy.deepcopy(model.state_dict())
+    step_lr = StepLR(optimizer, step_size=5, gamma=0.1)
 
     for epoch in range(num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
@@ -77,7 +78,7 @@ def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_
 
         current_lr = optimizer.param_groups[0]['lr']
         wandb.log({"Learning Rate": current_lr})
-
+        step_lr.step()
 
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
