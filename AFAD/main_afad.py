@@ -100,7 +100,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='Entrenament AFAD_2'
-name_run='fe amb lr0.001, wd0.001,stepLR i dropout'
+name_run='fe amb lr0.001, wd0.001 i dropout'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -127,7 +127,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_fe_stepLR.pth'
+ruta_archivo = 'model_fe_drop.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
