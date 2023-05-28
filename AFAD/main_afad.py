@@ -37,11 +37,10 @@ BATCH_SIZE=256
 
 wandb.init(
     # set the wandb project where this run will be logged
-    project="AFAD executions",
+    project="Entrenament AFAD",
     
     # track hyperparameters and run metadata
     config={
-    "learning_rate": 0.001,
     "architecture": "Resnet34",
     "dataset": "AFAD",
     "epochs": 15,
@@ -87,33 +86,39 @@ test_loader = DataLoader(dataset=test_dataset,
 
 
 
-print('\nDataLoaders correctes')
+print('\nDataLoaders correctes:')
+
+print('Train len:',len(train_loader.dataset))
+print('Valid len:',len(valid_loader.dataset))
+print('Test len:',len(test_loader.dataset))
 
 print('\nEntrenem el model\n')
 
 
-model = get_model('finetunning')
+model = get_model('fe')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='AFAD executions'
-name_run='finetunning_scheduler_s5_g0.1_lr0.1'
+name_project='Entrenament AFAD'
+name_run='fe amb lr0.01'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
-num_epochs = 20
+num_epochs = 15
 
-params_to_update = []
-for name,param in model.named_parameters():
-    if param.requires_grad == True:
-        params_to_update.append(param)
+#params_to_update = []
+#for name,param in model.named_parameters():
+#    if param.requires_grad == True:
+#        params_to_update.append(param)
 
-optimizer_ft = optim.Adam(model.parameters(), lr=0.1)
+#optimizer_ft = optim.Adam(model.parameters(), lr=0.1)
 #optimizer_ft = optim.Adam(params_to_update, lr=0.01)
-start_epoch=0
+
+optimizer_ft=optim.SGD(model.parameters(), lr=0.01)
+
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
@@ -122,7 +127,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_finetunning_sch.pth'
+ruta_archivo = 'model_fe.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
