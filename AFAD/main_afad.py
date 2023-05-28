@@ -34,7 +34,7 @@ IMAGE_PATH = '/home/alumne/datasets/AFAD-Full'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
-
+"""
 wandb.init(
     # set the wandb project where this run will be logged
     project="Entrenament AFAD_2",
@@ -46,7 +46,7 @@ wandb.init(
     "epochs": 15,
     }
 )
-
+"""
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
                                        transforms.ToTensor()])
@@ -99,8 +99,8 @@ model = get_model('fe')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='Entrenament AFAD'
-name_run='fe amb lr0.0005, wd0.001 i stepLR'
+name_project='Entrenament AFAD_2'
+name_run='fe amb lr0.001, wd0.001,stepLR i dropout'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -117,7 +117,7 @@ num_epochs = 15
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.1)
 #optimizer_ft = optim.Adam(params_to_update, lr=0.01)
 
-optimizer_ft=optim.SGD(model.parameters(), lr=0.0005, weight_decay=0.001)
+optimizer_ft=optim.SGD(model.parameters(), lr=0.001, weight_decay=0.001)
 
 
 dataloaders_dict = {}
