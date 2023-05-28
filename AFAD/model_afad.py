@@ -17,7 +17,7 @@ def get_model(tipus=None):
     else:
         model = models.vgg16(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         set_parameter_requires_grad(model,True)
-        num_features = model.classifier[-1].in_features
+        num_features = model.classifier[0].in_features
         model.classifier = nn.Sequential(
             nn.Dropout(p=0.5),
             nn.Linear(num_features, 1))
