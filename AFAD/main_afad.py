@@ -34,19 +34,19 @@ IMAGE_PATH = '/home/alumne/datasets/AFAD-Full'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
-"""
+
 wandb.init(
     # set the wandb project where this run will be logged
-    project="Entrenament AFAD",
+    project="Entrenament AFAD_2",
     
     # track hyperparameters and run metadata
     config={
-    "architecture": "Resnet34",
+    "architecture": "Resnet18",
     "dataset": "AFAD",
     "epochs": 15,
     }
 )
-"""
+
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
                                        transforms.ToTensor()])
