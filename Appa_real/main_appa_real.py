@@ -34,7 +34,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #datasets.utils.download_and_extract_archive(url, '../AppaRealAge')
 
 """Creem projecte wandb"""
-
+"""
 wandb.init(
     # set the wandb project where this run will be logged
     project="AP_ct_rt34_mse_20",
@@ -47,7 +47,7 @@ wandb.init(
     "epochs": 20,
     }
 )
-
+"""
 custom_transform = transforms.Compose([
         transforms.Resize(128),
         transforms.CenterCrop(128),
@@ -62,7 +62,7 @@ augmentation_transform = transforms.Compose([
     transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
 ])
 
-data_dir = "../AppaRealAge/appa-real-release"
+data_dir = "/home/alumne/AppaRealAge/appa-real-release"
 
 train_dataset = FaceDataset(data_dir, "train",transform=custom_transform)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True,
@@ -90,12 +90,12 @@ valid_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
 
 print('Valid len:',len(valid_loader.dataset))
 
-model = get_model('fe')
+model = get_model('finetunning')
 # Send the model to GPU
 model = model.to(device)
 
 name_project='AppaReal-First-Executions'
-name_run='fe_augmentation'
+name_run='finetun_augmentation'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -109,8 +109,8 @@ for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-#optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
+#optimizer_ft = optim.Adam(params_to_update, lr=0.001)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
