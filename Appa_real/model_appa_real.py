@@ -26,7 +26,9 @@ def get_model(tipus=None):
         print(model)
         set_parameter_requires_grad(model,True,7)
         num_features = model.fc.in_features
-        model.fc = nn.Linear(in_features=num_features,out_features=1)
+        model.fc = nn.Sequential(
+            nn.Dropout(p=0.5),
+            nn.Linear(num_features, 1))
         return model
     
 
