@@ -92,7 +92,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='AppaReal-First-Executions'
-name_run='prova'
+name_run='mix7_aug_0.0001_dropout'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
