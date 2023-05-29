@@ -1,20 +1,17 @@
 import torch.nn as nn
 from torchvision import datasets, models
 
-def set_parameter_requires_grad(model, feature_extracting, num_layers):
+def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
     if feature_extracting:
-        total_layers = len(list(model.children()))   # Obtener el número total de capas en el modelo
-        print(total_layers)
-        for idx, param in enumerate(model.parameters()):
-            if idx < total_layers - num_layers:  # Congelar los pesos de las capas anteriores a las últimas 4
-                param.requires_grad = False
+        child_counter = 0
+        for child in model.children():
+            if child_counter < num_layers:
+                print("child ",child_counter," was frozen")
+                for param in child.parameters():
+                    param.requires_grad = False
             else:
-                param.requires_grad = True
-    child_counter = 0
-    for child in model.children():
-        print(" child", child_counter, "is:")
-        print(child)
-        child_counter += 1
+                print("child ",child_counter," was not frozen")
+                child_counter += 1
             
 def get_model(tipus=None):
     if tipus=='finetunning':
@@ -25,7 +22,7 @@ def get_model(tipus=None):
     else:
         model = models.resnet34(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         print(model)
-        set_parameter_requires_grad(model,True,4)
+        set_parameter_requires_grad(model,True,7)
         num_features = model.fc.in_features
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
