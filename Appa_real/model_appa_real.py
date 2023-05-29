@@ -10,6 +10,11 @@ def set_parameter_requires_grad(model, feature_extracting, num_layers):
                 param.requires_grad = False
             else:
                 param.requires_grad = True
+    child_counter = 0
+    for child in model.children():
+        print(" child", child_counter, "is:")
+        print(child)
+        child_counter += 1
             
 def get_model(tipus=None):
     if tipus=='finetunning':
@@ -33,5 +38,5 @@ for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-print(params_to_update)
-print(len(params_to_update))
+#print(params_to_update)
+#print(len(params_to_update))
