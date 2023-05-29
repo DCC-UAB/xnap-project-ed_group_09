@@ -27,3 +27,7 @@ def get_model(tipus=None):
         num_features = model.fc.in_features
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
+    
+
+get model('fe')
+
