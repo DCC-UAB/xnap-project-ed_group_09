@@ -87,7 +87,7 @@ valid_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
 
 print('Valid len:',len(valid_loader.dataset))
 
-model = get_model('fe')
+model = get_model('finetunning')
 # Send the model to GPU
 model = model.to(device)
 
@@ -106,8 +106,8 @@ for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-#optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-optimizer_ft = optim.Adam(params_to_update, lr=0.0001)
+optimizer_ft = optim.Adam(model.parameters(), lr=0.0001)
+#optimizer_ft = optim.Adam(params_to_update, lr=0.0005)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
