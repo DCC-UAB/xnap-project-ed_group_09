@@ -59,10 +59,13 @@ data_dir = "../AppaRealAge/appa-real-release"
 train_dataset = FaceDataset(data_dir, "train",transform=custom_transform)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True,
                           num_workers=2, drop_last=True)
+print('Train len:',len(train_loader.dataset))
 
 val_dataset = FaceDataset(data_dir, "valid",transform=custom_transform)
-val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
+valid_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
                         num_workers=2, drop_last=False)
+
+print('Valid len:',len(valid_loader.dataset))
 
 model = get_model('fe')
 # Send the model to GPU
@@ -88,7 +91,7 @@ optimizer_ft = optim.Adam(params_to_update, lr=0.001)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
-dataloaders_dict['val']=val_loader
+dataloaders_dict['val']=valid_loader
 
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
