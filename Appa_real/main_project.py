@@ -17,9 +17,9 @@ import time
 import os
 import copy
 import wandb
-from lectura_dataset import FaceDataset,mostrar_imagen
-from train_mse import *
-from funcio_models import *
+from Appa_real.lectura_dataset import FaceDataset, mostrar_imagen
+from Appa_real.train_mse import *
+from Appa_real.funcio_models import *
 
 print("PyTorch Version: ",torch.__version__)
 print("Torchvision Version: ",torchvision.__version__)
@@ -54,21 +54,17 @@ custom_transform = transforms.Compose([
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
 
-#custom_transform = transforms.Compose([transforms.Resize((128, 128)),
-#                                       transforms.RandomCrop((120, 120)),
-#                                       transforms.ToTensor()])
-
 data_dir = "../AppaRealAge/appa-real-release"
 
-train_dataset = FaceDataset(data_dir, "train",augment=2,transf=custom_transform)
+train_dataset = FaceDataset(data_dir, "train",transform=custom_transform)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True,
                           num_workers=2, drop_last=True)
 
-val_dataset = FaceDataset(data_dir, "valid",augment=2,transf=custom_transform)
+val_dataset = FaceDataset(data_dir, "valid",transform=custom_transform)
 val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
                         num_workers=2, drop_last=False)
 
-model = get_model_fe()
+model = get_model('fe')
 # Send the model to GPU
 model = model.to(device)
 
@@ -97,9 +93,10 @@ dataloaders_dict['val']=val_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
+wandb.finish()
+
 ruta_archivo = 'model_1.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
 
-wandb.finish()

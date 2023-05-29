@@ -1,4 +1,3 @@
-#DATA_READ
 from torch.utils.data import Dataset
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -32,21 +31,12 @@ class ImgAugTransform:
         return img
 """
 class FaceDataset(Dataset):
-    def __init__(self, data_dir, data_type, img_size=224, augment=None,transf=None):
+    def __init__(self, data_dir, data_type, img_size=224,transform=None):
         assert(data_type in ("train", "valid", "test"))
         pathcsv = Path(data_dir).joinpath(f"gt_avg_{data_type}.csv")
         img_dir = Path(data_dir).joinpath(data_type)
         self.img_size = img_size
-        self.augment = augment
-
-        if augment==0:
-          self.transform = lambda i: i #no modifica la imatge
-        #elif augment==1:
-          #self.transform = ImgAugTransform() 
-          #aplica una serie de transformacions: (afegeix soroll, desenfoca, rotació..)
-          #ajuda al model a generalitzar, a regularitzar i que no es centri en patrons especifics.
-        else:
-          self.transform = transf
+        self.transform = transform
             
         self.x = []
         self.y = []
@@ -71,7 +61,13 @@ class FaceDataset(Dataset):
     def __getitem__(self, idx):
         img_path = self.x[idx]
         age = self.y[idx]
+        img = Image.open(img_path)
+        if self.transform is not None:
+          img = self.transform(img)
+        return img,age
 
+
+        """
         if self.augment!=0 and self.augment!=1:
           img = Image.open(img_path)
           img=self.transform(img)
@@ -81,7 +77,7 @@ class FaceDataset(Dataset):
           img = img.resize((self.img_size, self.img_size))
           img = self.transform(img).astype(np.float32)
           return torch.from_numpy(np.transpose(img, (2, 0, 1))),age
-        #fem np.transpose perque torch espera que les imatges siguin (canal, altura, amplada)
+        #fem np.transpose perque torch espera que les imatges siguin (canal, altura, amplada)"""
 
 def mostrar_imagen(dataset, indice):
     ruta_imagen = dataset.x[indice]
