@@ -23,7 +23,7 @@ def get_model(tipus=None):
     else:
         model = models.resnet34(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         print(model)
-        set_parameter_requires_grad(model,True,7)
+        set_parameter_requires_grad(model,True,6)
         num_features = model.fc.in_features
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
