@@ -17,9 +17,9 @@ import time
 import os
 import copy
 import wandb
-from Appa_real.lectura_dataset import FaceDataset, mostrar_imagen
-from Appa_real.train_mse import *
-from Appa_real.funcio_models import *
+from Appa_real.lectura_appa_real import FaceDataset, mostrar_imagen
+from Appa_real.train_appa_real import *
+from Appa_real.model_appa_real import *
 
 print("PyTorch Version: ",torch.__version__)
 print("Torchvision Version: ",torchvision.__version__)
