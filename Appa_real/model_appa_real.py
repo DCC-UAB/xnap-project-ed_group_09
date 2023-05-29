@@ -36,5 +36,5 @@ for name,param in model.named_parameters():
     if param.requires_grad == True:
         params_to_update.append(param)
 
-#print(params_to_update)
-#print(len(params_to_update))
+print(params_to_update)
+print(len(params_to_update))
