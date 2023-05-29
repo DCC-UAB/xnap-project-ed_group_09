@@ -3,7 +3,7 @@ from torchvision import datasets, models
 
 def set_parameter_requires_grad(model, feature_extracting, num_layers):
     if feature_extracting:
-        total_layers = len(list(model.layers))   # Obtener el número total de capas en el modelo
+        total_layers = len(list(model.children()))   # Obtener el número total de capas en el modelo
         print(total_layers)
         for idx, param in enumerate(model.parameters()):
             if idx < total_layers - num_layers:  # Congelar los pesos de las capas anteriores a las últimas 4
