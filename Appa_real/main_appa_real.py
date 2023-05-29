@@ -108,6 +108,7 @@ for name,param in model.named_parameters():
 
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.0001)
 optimizer_ft = optim.Adam(params_to_update, lr=0.0001)
+print("Learning rate:", optimizer_ft.param_groups[0]['lr'])
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader

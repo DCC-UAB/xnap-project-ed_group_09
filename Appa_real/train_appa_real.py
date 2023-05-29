@@ -79,7 +79,7 @@ def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_
                 best_loss = epoch_loss
                 best_model_wts = copy.deepcopy(model.state_dict())
 
-        print()
+        print("Learning rate:", optimizer.param_groups[0]['lr'])
 
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
