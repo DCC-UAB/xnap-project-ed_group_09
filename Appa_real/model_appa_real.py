@@ -27,14 +27,3 @@ def get_model(tipus=None):
         num_features = model.fc.in_features
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
-    
-
-model=get_model('fe')
-
-params_to_update = []
-for name,param in model.named_parameters():
-    if param.requires_grad == True:
-        params_to_update.append(param)
-
-print(params_to_update)
-print(len(params_to_update))
