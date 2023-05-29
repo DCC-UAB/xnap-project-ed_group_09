@@ -17,9 +17,9 @@ import time
 import os
 import copy
 import wandb
-from Appa_real.lectura_appa_real import FaceDataset, mostrar_imagen
-from Appa_real.train_appa_real import *
-from Appa_real.model_appa_real import *
+from lectura_appa_real import FaceDataset, mostrar_imagen
+from train_appa_real import *
+from model_appa_real import *
 from torch.utils.data import ConcatDataset
 
 print("PyTorch Version: ",torch.__version__)
