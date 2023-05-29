@@ -29,5 +29,5 @@ def get_model(tipus=None):
         return model
     
 
-get model('fe')
+get_model('fe')
 
