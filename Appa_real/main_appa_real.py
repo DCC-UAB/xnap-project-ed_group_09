@@ -82,7 +82,7 @@ augmented_loader = DataLoader(augmented_dataset, batch_size=32, shuffle=True, nu
 # Combina el dataloader original con el dataloader aumentado
 train_loader = torch.utils.data.ConcatDataset([train_loader, augmented_loader])
 
-print('Train post aug len:',len(train_loader.datasets))
+print('Train post aug len:',len(train_loader))
 
 val_dataset = FaceDataset(data_dir, "valid",transform=custom_transform)
 valid_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
