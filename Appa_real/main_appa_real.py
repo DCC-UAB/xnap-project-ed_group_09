@@ -92,7 +92,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='AppaReal-First-Executions'
-name_run='mix_aug_0.0001'
+name_run='mix_aug_0.001'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -107,7 +107,7 @@ for name,param in model.named_parameters():
         params_to_update.append(param)
 
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.0001)
-optimizer_ft = optim.Adam(params_to_update, lr=0.0001)
+optimizer_ft = optim.Adam(params_to_update, lr=0.001)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
