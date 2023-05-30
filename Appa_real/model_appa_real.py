@@ -23,6 +23,7 @@ def get_model(tipus=None):
         return model
     else:
         model = models.mobilenet_v2(pretrained=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
+        print(model)
         set_parameter_requires_grad(model,True,7)
         num_features = model.classifier[1].in_features
         model.classifier[1] = nn.Linear(num_features, 1)

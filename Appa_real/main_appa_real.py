@@ -92,7 +92,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='AppaReal-First-Executions'
-name_run='mix8_aug_0.001_64'
+name_run='mix7_aug_0.001_32'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
