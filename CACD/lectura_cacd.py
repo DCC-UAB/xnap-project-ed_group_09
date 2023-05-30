@@ -25,7 +25,41 @@ class CACDDataset(Dataset):
         self.img_names = df['file'].values
         self.y = df['age'].values
         self.transform = transform
+        
+    def __getitem__(self,index):
+        img = cv2.imread(os.path.join(self.img_dir, self.img_names[index]))
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
+        # detects faces in the input image
+        faces = face_cascade.detectMultiScale(gray, 1.3, 4)
+        print('Number of detected faces:', len(faces))
+        
+        if len(faces)==1:
+            for (x, y, w, h) in faces:
+                cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                face_image = img[y:y + h, x:x + w]
+                cv2.imshow(face_image)
+                if self.transform is not None:
+                    img = self.transform(img)
+                    
+                label = self.y[index]
+
+                return face_image, label
+        else:
+            img = Image.open(os.path.join(self.img_dir,self.img_names[index]))
+            if self.transform is not None:
+                img = self.transform(img)
+
+            label = self.y[index]
+
+            return img, label
+    
+    def __len__(self):
+        return self.y.shape[0]
+            
+                
+"""
     def __getitem__(self, index):
         detector = dlib.get_frontal_face_detector()
         img = cv2.imread(os.path.join(self.img_dir, self.img_names[index]))
@@ -79,9 +113,9 @@ class CACDDataset(Dataset):
                     label = self.y[index]
 
                     return img, label
+"""
 
-    def __len__(self):
-        return self.y.shape[0]
+        
 
 
 
