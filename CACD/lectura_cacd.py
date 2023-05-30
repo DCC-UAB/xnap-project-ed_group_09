@@ -39,7 +39,6 @@ class CACDDataset(Dataset):
             for (x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 face_image = img[y:y + h, x:x + w]
-                cv2.imshow(face_image)
                 if self.transform is not None:
                     img = self.transform(img)
                     
