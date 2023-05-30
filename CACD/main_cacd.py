@@ -27,10 +27,10 @@ print("Torchvision Version: ",torchvision.__version__)
 # Detect if we have a GPU available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_train.csv'
-VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_valid.csv'
-TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_test.csv'
-IMAGE_PATH = '/home/alumne/datasets/CACD2000'
+TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_train_centered.csv'
+VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_valid_centered.csv'
+TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_test_centered.csv'
+IMAGE_PATH = '/home/alumne/datasets/CACD2000-centered'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
