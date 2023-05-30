@@ -27,7 +27,6 @@ class CACDDataset(Dataset):
         self.transform = transform
 
     def __getitem__(self, index):
-        print(index)
         detector = dlib.get_frontal_face_detector()
         img = cv2.imread(os.path.join(self.img_dir, self.img_names[index]))
         detected = detector(img, 1)
@@ -67,7 +66,9 @@ class CACDDataset(Dataset):
                                 :]
 
                 try:
+                    print("tmp abans: "+tmp.shape())
                     tmp = np.array(Image.fromarray(np.uint8(tmp)).resize((120, 120), Image.ANTIALIAS))
+                    print("tmp despres: "+tmp.shape())
                     label = self.y[index]
                     return tmp,label
                 except:
