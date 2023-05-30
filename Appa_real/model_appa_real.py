@@ -1,6 +1,7 @@
 import torch.nn as nn
 from torchvision import datasets, models
 
+"""
 def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
     if feature_extracting:
         child_counter = 0
@@ -14,6 +15,7 @@ def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
             else:
                 print("child ",child_counter," was not frozen")
                 child_counter += 1
+"""
 """
 def set_parameter_requires_grad(model, feature_extracting):
     if feature_extracting:
