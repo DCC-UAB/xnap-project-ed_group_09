@@ -96,12 +96,12 @@ print('\nDataLoaders correctes')
 print('\nEntrenem el model\n')
 
 
-model = get_model('finetunning')
+model = get_model('fe')
 # Send the model to GPU
 model = model.to(device)
 
 name_project='CACD-First-Executions'
-name_run='finetunning_prep'
+name_run='fe_prep'
 
 # Setup the loss fxn
 #criterion = nn.MSELoss()
@@ -126,7 +126,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_fnetun_prep_cacd.pth'
+ruta_archivo = 'model_fe_prep_cacd.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
