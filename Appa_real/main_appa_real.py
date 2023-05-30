@@ -65,10 +65,10 @@ augmentation_transform = transforms.Compose([
 data_dir = "/home/alumne/AppaRealAge/appa-real-release"
 
 train_dataset = FaceDataset(data_dir, "train",transform=custom_transform)
-train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True,
-                          num_workers=2, drop_last=True)
+#train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True,
+#                          num_workers=2, drop_last=True)
 
-print('Train len:',len(train_loader.dataset))
+#print('Train len:',len(train_loader.dataset))
 
 # Crea un nuevo conjunto de datos aplicando las transformaciones de data augmentation
 augmented_dataset = ConcatDataset([train_dataset, train_dataset, train_dataset])
@@ -77,12 +77,12 @@ augmented_dataset = ConcatDataset([train_dataset, train_dataset, train_dataset])
 augmented_dataset.transforms = augmentation_transform
 
 # Crea el dataloader con el nuevo conjunto de datos aumentado
-train_loader = DataLoader(augmented_dataset, batch_size=64, shuffle=True, num_workers=2, drop_last=True)
+train_loader = DataLoader(augmented_dataset, batch_size=32, shuffle=True, num_workers=2, drop_last=True)
 
 print('Train post aug len:',len(train_loader.dataset))
 
 val_dataset = FaceDataset(data_dir, "valid",transform=custom_transform)
-valid_loader = DataLoader(val_dataset, batch_size=64, shuffle=False,
+valid_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,
                         num_workers=2, drop_last=False)
 
 print('Valid len:',len(valid_loader.dataset))
