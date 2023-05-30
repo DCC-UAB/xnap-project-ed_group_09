@@ -49,7 +49,7 @@ wandb.init(
 )
 
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
-                                       transforms.RandomCrop((120, 120)),
+                                       transforms.RandomCrop((128, 128)),
                                        transforms.ToTensor()])
 
 train_dataset = CACDDataset(csv_path=TRAIN_CSV_PATH,
@@ -58,7 +58,7 @@ train_dataset = CACDDataset(csv_path=TRAIN_CSV_PATH,
 
 
 custom_transform2 = transforms.Compose([transforms.Resize((128, 128)),
-                                       transforms.CenterCrop((120, 120)),
+                                       transforms.CenterCrop((128, 128)),
                                        transforms.ToTensor()])
 
 test_dataset = CACDDataset(csv_path=TEST_CSV_PATH,
