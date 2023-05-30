@@ -8,31 +8,37 @@ from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from PIL import Image
-#import dlib
+import dlib
 import numpy as np
-#import cv2
+import cv2
 
-"""""
+
 class CACDDataset(Dataset):
-    #Custom Dataset for loading CACD face images
+    """Custom Dataset for loading CACD face images"""
 
-    def __init__(self,csv_path, img_dir, transform=None):
+    def __init__(self,
+                 csv_path, img_dir, transform=None):
 
         df = pd.read_csv(csv_path, index_col=0)
         self.img_dir = img_dir
         self.csv_path = csv_path
         self.img_names = df['file'].values
-
-        self.y = df['age'].values #això es per si fem cross_entropy
-        #self.y= df['file'].str.split('_').str[0].values
+        self.y = df['age'].values
         self.transform = transform
 
-    def __getitem__(self, index):
+    def _getitem_(self, index):
         detector = dlib.get_frontal_face_detector()
         img = cv2.imread(os.path.join(self.img_dir, self.img_names[index]))
         detected = detector(img, 1)
 
-        if len(detected) == 1:  # skip if there are 0 or more than 1 face
+        if len(detected) != 1:  # skip if there are 0 or more than 1 face
+            if self.transform is not None:
+                img = self.transform(img)
+
+            label = self.y[index]
+
+            return img, label
+        else:
             for idx, face in enumerate(detected):
                 width = face.right() - face.left()
                 height = face.bottom() - face.top()
@@ -60,66 +66,16 @@ class CACDDataset(Dataset):
                                 :]
 
                 try:
-                    img = Image.fromarray(np.uint8(tmp))
-                    img = img.resize((120, 120), Image.ANTIALIAS)
-                    img = np.array(img)
+                    tmp = np.array(Image.fromarray(np.uint8(tmp)).resize((120, 120), Image.ANTIALIAS))
+                    label = self.y[index]
+                    return tmp,label
+                except:
                     if self.transform is not None:
                         img = self.transform(img)
 
                     label = self.y[index]
 
                     return img, label
-                    
-                except ValueError:
-                    if self.transform is not None:
-                        img = self.transform(img)
-
-                    label = self.y[index]
-
-                    return img, label
-        else:
-            
-            
-            if self.transform is not None:
-                img = self.transform(img)
-
-            label = self.y[index]
-
-            return img, label
-
-
-            
-
-    def __len__(self):
-        return self.y.shape[0]
-"""
-
-
-
-
-class CACDDataset(Dataset):
-    """Custom Dataset for loading CACD face images"""
-
-    def __init__(self,
-                 csv_path, img_dir, transform=None):
-
-        df = pd.read_csv(csv_path, index_col=0)
-        self.img_dir = img_dir
-        self.csv_path = csv_path
-        self.img_names = df['file'].values
-        self.y = df['age'].values
-        self.transform = transform
-
-    def __getitem__(self, index):
-        img = Image.open(os.path.join(self.img_dir,
-                                      self.img_names[index]))
-
-        if self.transform is not None:
-            img = self.transform(img)
-
-        label = self.y[index]
-
-        return img, label
 
     def __len__(self):
         return self.y.shape[0]
