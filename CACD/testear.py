@@ -1,5 +1,11 @@
-#blbalbaklab
+from model_cacd import *
+import torch
 
-model = TheModelClass(*args, **kwargs)
-model.load_state_dict(torch.load(PATH))
+model=get_model('finetunning')
+
+model.load_state_dict(torch.load('./model_fnetun_cacd.pth'))
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+model = model.to(device)
 model.eval()
