@@ -104,7 +104,8 @@ name_project='CACD-First-Executions'
 name_run='finetunning'
 
 # Setup the loss fxn
-criterion = nn.MSELoss()
+#criterion = nn.MSELoss()
+criterion = nn.L1Loss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
