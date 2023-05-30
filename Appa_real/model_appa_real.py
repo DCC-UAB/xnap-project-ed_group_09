@@ -34,10 +34,11 @@ def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
                         for param in children_of_child.parameters():
                             param.requires_grad = False
                             print("child ", children_of_child_counter, 'of child',child_counter,' was frozen')
-                            children_of_child_counter+=1
+                        children_of_child_counter+=1
                     else:
                         print('child ', children_of_child_counter, 'of child',child_counter,' was not frozen')
                         children_of_child_counter += 1
+                child_counter += 1
             else:
                 print("child ",child_counter," was not frozen")
                 child_counter += 1
