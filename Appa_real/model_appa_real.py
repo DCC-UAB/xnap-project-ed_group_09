@@ -1,7 +1,7 @@
 import torch.nn as nn
 from torchvision import datasets, models
 
-"""
+
 def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
     if feature_extracting:
         child_counter = 0
@@ -15,14 +15,14 @@ def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
             else:
                 print("child ",child_counter," was not frozen")
                 child_counter += 1
-"""
+
 """
 def set_parameter_requires_grad(model, feature_extracting):
     if feature_extracting:
         for param in model.parameters():
             param.requires_grad = False
 """
-
+"""
 def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
     if feature_extracting:
         child_counter = 0
@@ -43,7 +43,7 @@ def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
             else:
                 print("child ",child_counter," was not frozen")
                 child_counter += 1
-
+"""
 def get_model(tipus=None):
     if tipus=='finetunning':
         model = models.resnet34(weights=True)
@@ -51,13 +51,13 @@ def get_model(tipus=None):
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
     else:
-        model = models.mobilenet_v2(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
+        model = models.resnet34(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         print(model)
-        set_parameter_requires_grad(model,True,8)
-        #num_features = model.fc.in_features
-        #model.fc = nn.Linear(in_features=num_features,out_features=1)
-        num_features = model.classifier[1].in_features
-        model.classifier[1] = nn.Linear(num_features, 1)
+        set_parameter_requires_grad(model,True,7)
+        num_features = model.fc.in_features
+        model.fc = nn.Linear(in_features=num_features,out_features=1)
+        #num_features = model.classifier[1].in_features
+        #model.classifier[1] = nn.Linear(num_features, 1)
         return model
     
 
