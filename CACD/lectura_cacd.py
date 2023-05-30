@@ -39,9 +39,9 @@ class CACDDataset(Dataset):
             for (x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 face_image = img[y:y + h, x:x + w]
-                face_image = Image.fromarray(cv2.cvtColor(face_image, cv2.COLOR_BGR2RGB))
+                face_image_pil = Image.fromarray(cv2.cvtColor(face_image, cv2.COLOR_BGR2RGB))
                 if self.transform is not None:
-                    img = self.transform(img)
+                    face_image_pil = self.transform(face_image_pil)
                     
                 label = self.y[index]
 
