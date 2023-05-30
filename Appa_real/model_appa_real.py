@@ -1,11 +1,11 @@
 import torch.nn as nn
 from torchvision import datasets, models
-"""
+
 def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
     if feature_extracting:
         child_counter = 0
         for child in model.children():
-            print("child ",child_counter,child)
+            print("child ",child_counter)#,child)
             if child_counter < num_layers:
                 print("child ",child_counter," was frozen")
                 for param in child.parameters():
@@ -19,6 +19,7 @@ def set_parameter_requires_grad(model, feature_extracting):
     if feature_extracting:
         for param in model.parameters():
             param.requires_grad = False
+"""
             
 def get_model(tipus=None):
     if tipus=='finetunning':
@@ -29,7 +30,7 @@ def get_model(tipus=None):
     else:
         model = models.mobilenet_v2(pretrained=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         print(model)
-        set_parameter_requires_grad(model,True)
+        set_parameter_requires_grad(model,True,7)
         num_features = model.classifier[1].in_features
         model.classifier[1] = nn.Linear(num_features, 1)
         return model
