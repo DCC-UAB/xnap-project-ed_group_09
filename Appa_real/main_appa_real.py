@@ -95,7 +95,9 @@ name_project='AppaReal-First-Executions'
 name_run='mix_aug_0.001_32_mNet'
 
 # Setup the loss fxn
-criterion = nn.MSELoss()
+#criterion = nn.MSELoss()
+criterion = nn.L1Loss()
+
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
