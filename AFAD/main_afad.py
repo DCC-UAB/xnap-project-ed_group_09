@@ -70,17 +70,17 @@ test_dataset = AFADDatasetAge(csv_path=TEST_CSV_PATH,
 
 
 train_loader = DataLoader(dataset=train_dataset,
-                          batch_size=256,
+                          batch_size=128,
                           shuffle=True,
                           num_workers=4)
 
 valid_loader = DataLoader(dataset=valid_dataset,
-                          batch_size=256,
+                          batch_size=128,
                           shuffle=False,
                           num_workers=4)
 
 test_loader = DataLoader(dataset=test_dataset,
-                         batch_size=256,
+                         batch_size=128,
                          shuffle=False,
                          num_workers=4)
 
@@ -100,24 +100,24 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='Entrenament AFAD_2'
-name_run='fe amb lr0.0001 dropout i vgg16'
+name_run='L1loss fine dropout'
 
 # Setup the loss fxn
-criterion = nn.MSELoss()
+#criterion = nn.MSELoss()
+criterion = nn.L1Loss()
 #criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
 num_epochs = 15
 
-#params_to_update = []
-#for name,param in model.named_parameters():
-#    if param.requires_grad == True:
-#        params_to_update.append(param)
+params_to_update = []
+for name,param in model.named_parameters():
+    if param.requires_grad == True:
+        params_to_update.append(param)
 
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.1)
-#optimizer_ft = optim.Adam(params_to_update, lr=0.01)
+optimizer_ft = optim.Adam(params_to_update, lr=0.001)
 
-optimizer_ft=optim.SGD(model.parameters(), lr=0.0001)
 
 
 dataloaders_dict = {}
