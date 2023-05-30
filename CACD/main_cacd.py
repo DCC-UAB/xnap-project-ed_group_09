@@ -34,20 +34,20 @@ IMAGE_PATH = '/home/alumne/datasets/CACD2000'
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
-"""
+
 wandb.init(
     # set the wandb project where this run will be logged
-    project="CACD executions",
+    project="CACD-First-Executions",
     
     # track hyperparameters and run metadata
     config={
-    "learning_rate": 0.001,
+    "learning_rate": 0.0005,
     "architecture": "Resnet34",
     "dataset": "CACD",
-    "epochs": 175,
+    "epochs": 15,
     }
 )
-"""
+
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
                                        transforms.ToTensor()])
@@ -96,12 +96,12 @@ print('\nDataLoaders correctes')
 print('\nEntrenem el model\n')
 
 
-model = get_model('fe')
+model = get_model('finetunning')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='CACD executions'
-name_run='fe_preprocessat'
+name_project='CACD-First-Executions'
+name_run='finetunning'
 
 # Setup the loss fxn
 criterion = nn.MSELoss()
@@ -116,7 +116,7 @@ for name,param in model.named_parameters():
         params_to_update.append(param)
 
 #optimizer_ft = optim.Adam(model.parameters(), lr=0.001)
-optimizer_ft = optim.Adam(params_to_update, lr=0.001)
+optimizer_ft = optim.Adam(params_to_update, lr=0.0005)
 
 dataloaders_dict = {}
 dataloaders_dict['train']=train_loader
@@ -125,10 +125,9 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_fe_preprocessat.pth'
+ruta_archivo = 'model_fnetun_cacd.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
 
 wandb.finish()
-
