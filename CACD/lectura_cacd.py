@@ -27,6 +27,7 @@ class CACDDataset(Dataset):
         self.transform = transform
 
     def _getitem_(self, index):
+        print(index)
         detector = dlib.get_frontal_face_detector()
         img = cv2.imread(os.path.join(self.img_dir, self.img_names[index]))
         detected = detector(img, 1)
