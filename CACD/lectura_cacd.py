@@ -66,9 +66,9 @@ class CACDDataset(Dataset):
                                 :]
 
                 try:
-                    print("tmp abans: "+tmp.shape())
                     tmp = np.array(Image.fromarray(np.uint8(tmp)).resize((120, 120), Image.ANTIALIAS))
-                    print("tmp despres: "+tmp.shape())
+                    print("tmp despres: ")
+                    print(tmp.shape())
                     label = self.y[index]
                     return tmp,label
                 except:
