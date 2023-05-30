@@ -18,7 +18,7 @@ def get_model(tipus=None):
         model = models.resnet34(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         set_parameter_requires_grad(model,True)
         num_features = model.fc.in_features
-        model.classifier = nn.Sequential(
+        model.fc = nn.Sequential(
             nn.Dropout(p=0.5),
             nn.Linear(num_features, 1))
         return model
