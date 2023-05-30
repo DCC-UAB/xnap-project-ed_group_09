@@ -22,10 +22,10 @@ def get_model(tipus=None):
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
     else:
-        model = models.resnet34(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
-        set_parameter_requires_grad(model,True,8)
-        num_features = model.fc.in_features
-        model.fc = nn.Linear(num_features, 1)
+        model = models.mobilenet_v2(pretrained=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
+        set_parameter_requires_grad(model,True,7)
+        num_features = model.classifier[1].in_features
+        model.classifier[1] = nn.Linear(num_features, 1)
         return model
     
 
