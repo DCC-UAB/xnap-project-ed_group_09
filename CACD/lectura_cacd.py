@@ -32,6 +32,7 @@ class CACDDataset(Dataset):
         detected = detector(img, 1)
 
         if len(detected) != 1:  # skip if there are 0 or more than 1 face
+            img = Image.open(os.path.join(self.img_dir,self.img_names[index]))
             if self.transform is not None:
                 img = self.transform(img)
 
@@ -67,12 +68,12 @@ class CACDDataset(Dataset):
 
                 try:
                     tmp = np.array(Image.fromarray(np.uint8(tmp)).resize((120, 120), Image.ANTIALIAS))
-                    print("tmp despres: ")
-                    print(tmp.shape())
                     label = self.y[index]
                     return tmp,label
                 except:
+                    img = Image.open(os.path.join(self.img_dir,self.img_names[index]))
                     if self.transform is not None:
+                        
                         img = self.transform(img)
 
                     label = self.y[index]
