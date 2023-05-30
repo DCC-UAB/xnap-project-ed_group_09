@@ -15,10 +15,10 @@ def get_model(tipus=None):
         model.fc = nn.Linear(in_features=num_features,out_features=1)
         return model
     else:
-        model = models.vgg16(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
+        model = models.resnet34(weights=True) # Notice we are now loading the weights of a ResNet model trained on ImageNet
         set_parameter_requires_grad(model,True)
-        num_features = model.classifier[0].in_features
-        model.classifier = nn.Sequential(
+        num_features = model.fc.in_features
+        model.fc = nn.Sequential(
             nn.Dropout(p=0.5),
             nn.Linear(num_features, 1))
         return model
