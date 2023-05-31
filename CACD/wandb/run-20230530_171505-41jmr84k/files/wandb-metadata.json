@@ -1,0 +1,75 @@
+{
+    "os": "Linux-5.15.0-1038-azure-x86_64-with-glibc2.31",
+    "python": "3.10.8",
+    "heartbeatAt": "2023-05-30T17:15:05.851781",
+    "startedAt": "2023-05-30T17:15:05.138568",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/alumne/xnap-project-ed_group_09/CACD/main_cacd.py",
+    "codePath": "CACD/main_cacd.py",
+    "git": {
+        "remote": "https://github.com/DCC-UAB/xnap-project-ed_group_09.git",
+        "commit": "517028e1b489aee26739d3724fb8cdc32c129f8b"
+    },
+    "email": "1601488@uab.cat",
+    "root": "/home/alumne/xnap-project-ed_group_09",
+    "host": "ML-RefVm-676786",
+    "username": "alumne",
+    "executable": "/home/alumne/anaconda3/bin/python",
+    "cpu_count": 6,
+    "cpu_count_logical": 6,
+    "cpu_freq": {
+        "current": 2596.991,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2596.991,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2596.991,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2596.991,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2596.991,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2596.991,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2596.991,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 145.1909637451172,
+        "used": 127.15374755859375
+    },
+    "gpu": "Tesla M60",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "Tesla M60",
+            "memory_total": 8589934592
+        }
+    ],
+    "memory": {
+        "total": 54.90073013305664
+    }
+}
