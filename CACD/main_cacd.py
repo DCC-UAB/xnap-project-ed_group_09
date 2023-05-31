@@ -101,7 +101,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='CACD-First-Executions'
-name_run='fe_prep'
+name_run='mknlkn'
 
 # Setup the loss fxn
 #criterion = nn.MSELoss()

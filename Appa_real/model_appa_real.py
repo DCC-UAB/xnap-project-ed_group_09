@@ -6,7 +6,7 @@ def set_parameter_requires_grad(model, feature_extracting, num_layers=7):
     if feature_extracting:
         child_counter = 0
         for child in model.children():
-            print("child ",child_counter)#,child)
+            print("child ",child_counter,child)
             if child_counter < num_layers:
                 print("child ",child_counter," was frozen")
                 for param in child.parameters():
