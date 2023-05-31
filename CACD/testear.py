@@ -12,7 +12,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = model.to(device)
 model.eval()
 
-image_path = './foto.jpg'
+image_path = '/home/alumne/xnap-project-ed_group_09/foto_mare.jpeg'
 image = Image.open(image_path)
 
 input_tensor = transforms.ToTensor()(image)
