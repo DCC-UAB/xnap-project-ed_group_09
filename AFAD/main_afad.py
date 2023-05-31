@@ -100,7 +100,7 @@ model = get_model('fe')
 model = model.to(device)
 
 name_project='Entrenament AFAD_2'
-name_run='L1loss fine dropout'
+name_run='bjkbkljn'
 
 # Setup the loss fxn
 #criterion = nn.MSELoss()
