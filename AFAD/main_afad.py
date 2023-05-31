@@ -99,8 +99,8 @@ model = get_model('fe')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='Entrenament AFAD_2'
-name_run='bjkbkljn'
+name_project='AFAD-First-Executions'
+name_run='fe_dropout'
 
 # Setup the loss fxn
 #criterion = nn.MSELoss()
