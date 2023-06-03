@@ -43,7 +43,7 @@ def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_
                     # Get model outputs and calculate loss
                     outputs = model(inputs)
                     outputs = outputs.float()
-                    labels = labels.view(-1, 1)  # Cambiar la forma de las etiquetas a [128, 1]
+                    labels = labels.view(-1, 1)
 
                     loss = criterion(outputs, labels)
                     losses[phase].append(loss.item())
@@ -56,16 +56,14 @@ def train_model_mse(model, dataloaders, criterion, optimizer, num_epochs=5,name_
                   else:
                     outputs = model(inputs)
                     outputs = outputs.float()
-                    labels = labels.view(-1, 1)  # Cambiar la forma de las etiquetas a [128, 1]
+                    labels = labels.view(-1, 1)
 
                     loss = criterion(outputs, labels)
                     losses[phase].append(loss.item())
-                    #print(correct_num)
 
 
                 # statistics
                 running_loss += loss.item() * inputs.size(0)
-                #print(torch.sum(preds==labels.data))
 
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)

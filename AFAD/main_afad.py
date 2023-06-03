@@ -31,13 +31,13 @@ TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_train.csv'
 VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_valid.csv'
 TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_test.csv'
 IMAGE_PATH = '/home/alumne/datasets/AFAD-Full'
-BATCH_SIZE=256
+BATCH_SIZE = 128
 
 """Creem projecte wandb"""
-"""
+
 wandb.init(
     # set the wandb project where this run will be logged
-    project="Entrenament AFAD_2",
+    project="Execució AFAD",
     
     # track hyperparameters and run metadata
     config={
@@ -46,7 +46,7 @@ wandb.init(
     "epochs": 15,
     }
 )
-"""
+
 custom_transform = transforms.Compose([transforms.Resize((128, 128)),
                                        transforms.RandomCrop((120, 120)),
                                        transforms.ToTensor()])
@@ -70,17 +70,17 @@ test_dataset = AFADDatasetAge(csv_path=TEST_CSV_PATH,
 
 
 train_loader = DataLoader(dataset=train_dataset,
-                          batch_size=128,
+                          batch_size=BATCH_SIZE,
                           shuffle=True,
                           num_workers=4)
 
 valid_loader = DataLoader(dataset=valid_dataset,
-                          batch_size=128,
+                          batch_size=BATCH_SIZE,
                           shuffle=False,
                           num_workers=4)
 
 test_loader = DataLoader(dataset=test_dataset,
-                         batch_size=128,
+                         batch_size=BATCH_SIZE,
                          shuffle=False,
                          num_workers=4)
 
@@ -99,13 +99,12 @@ model = get_model('fe')
 # Send the model to GPU
 model = model.to(device)
 
-name_project='AFAD-First-Executions'
-name_run='fe_dropout'
+name_project='Execució AFAD'
+name_run='feature extraction with dropout'
 
 # Setup the loss fxn
 #criterion = nn.MSELoss()
 criterion = nn.L1Loss()
-#criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
 num_epochs = 15
@@ -127,7 +126,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_fe_drop.pth'
+ruta_archivo = 'model_1.pth'
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
