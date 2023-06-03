@@ -5,7 +5,7 @@ from torchvision import datasets, models, transforms
 
 model=get_model('fe')
 
-model.load_state_dict(torch.load('./model_mix_definitiu.pth'))
+model.load_state_dict(torch.load('./model_definitiu.pth'))
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
