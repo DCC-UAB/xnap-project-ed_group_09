@@ -19,6 +19,8 @@ En cada folder veiem un **'train_' + nom del dataset + 'py.'** En aquest arxiu e
 
 Hi ha un arxiu **'main_' + nom del dataset + 'py.'** en cada folder. En aquest arxiu, s'inicia sessió al wandb, es crea un projecte si es vol crear, es crida a la lectura del dataset ('lectura_' + nom del dataset + 'py.') i es creen els dataloaders, es crea el model i es defineix la loss function i l'optimizer. Un cop tot definit i creat, es crida al train perque el model s'entreni i es guarda el state del millor model trobat, retornat per la funció train, a un arxiu '.pth'.
 
+Per últim, **test.py**:
+
 ## Execucions
 
 ## Example Code
