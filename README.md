@@ -21,6 +21,8 @@ Hi ha un arxiu **'main_' + nom del dataset + 'py.'** en cada folder. En aquest a
 
 Per últim, **test.py**:
 
+**Preprocessing CACD**:
+
 ## Execucions
 A continuació s'explicaran les diferents execucions i ajusts que s'han fet per arribar a un model final.
 ### Appa Real
