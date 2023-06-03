@@ -22,6 +22,8 @@ Hi ha un arxiu **'main_' + nom del dataset + 'py.'** en cada folder. En aquest a
 Per últim, **test.py**:
 
 ## Execucions
+**Appa Real**
+kjkjhkjh
 
 ## Example Code
 The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
