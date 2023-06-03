@@ -33,7 +33,7 @@ TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_test.csv'
 IMAGE_PATH = '/home/alumne/datasets/AFAD-Full'
 BATCH_SIZE = 128
 
-"""Creem projecte wandb"""
+#Creem projecte wandb
 
 wandb.init(
     # set the wandb project where this run will be logged
