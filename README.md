@@ -1,5 +1,5 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11122274&assignment_repo_type=AssignmentRepo)
-# XNAP-Segons la AI, quina edat aparentes?
+# XNAP-Segons la IA, quina edat aparentes?
 En aquest projecte s'implementa varios models amb diferents datasets amb l'objectiu de predir l'edat d'una persona a partir d'una imatge. En aquest projecte s'ha treballat amb 3 datasets diferents:
 - Appa_real: 7.5k imatges
 - CACD (Cross Age Celebrity Dataset): 160k imatges de 2k celebrities diferents
@@ -15,13 +15,13 @@ En cada folder hi trobem l'arxiu **'lectura_'+ nom del dataset + '.py'**. En aqu
 
 També hi trobem el **'model_' + nom del dataset + '.py'**. En aquest arxiu python hi trobem la funció que crea el model. En cada folder hi trobem una configuració diferent ja que està personalitzat per cada dataset. En tots tres a la funció se li pasa el tipus de transfer learning (finetunning o feature extraction). S'utilitza transfer learning en cada un amb l'arquitectura resnet34 pre-entrenada.
 
-En cada folder veiem un **'train_' + nom del dataset + 'py.'** En aquest arxiu està la funcio train. Se li pasa com a paràmetres el model creat, els dataloaders, la loss function, l'optimizer, el número de époques que es vol entrenar el model, el nom del projecte wandb i el nom de l'execució i per últim el device. Aquesta funció entrena el model amb el dataloader del train, l'evalua amb el dataloader del validation i retorna el state del millor model trobat i les losses.
+En cada folder veiem un **'train_' + nom del dataset + '.py'** En aquest arxiu està la funcio train. Se li pasa com a paràmetres el model creat, els dataloaders, la loss function, l'optimizer, el número de époques que es vol entrenar el model, el nom del projecte wandb i el nom de l'execució i per últim el device. Aquesta funció entrena el model amb el dataloader del train, l'evalua amb el dataloader del validation i retorna el state del millor model trobat i les losses.
 
-Hi ha un arxiu **'main_' + nom del dataset + 'py.'** en cada folder. En aquest arxiu, s'inicia sessió al wandb, es crea un projecte si es vol crear, es crida a la lectura del dataset ('lectura_' + nom del dataset + 'py.') i es creen els dataloaders, es crea el model i es defineix la loss function i l'optimizer. Un cop tot definit i creat, es crida al train perque el model s'entreni i es guarda el state del millor model trobat, retornat per la funció train, a un arxiu '.pth'.
+Hi ha un arxiu **'main_' + nom del dataset + '.py'** en cada folder. En aquest arxiu, s'inicia sessió al wandb, es crea un projecte si es vol crear, es crida a la lectura del dataset ('lectura_' + nom del dataset + 'py.') i es creen els dataloaders, es crea el model i es defineix la loss function i l'optimizer. Un cop tot definit i creat, es crida al train perque el model s'entreni i es guarda el state del millor model trobat, retornat per la funció train, a un arxiu '.pth'.
 
-Per últim, **test.py**:
+Per últim, hi ha l'arxiu **'test_' + nom del dataset + '.py'** on creem el model cridant a la funció de l'arxiu 'model_' + nom del dataset + '.py' i al model li fem un load de l'arxiu creat '.pth' on estan els paràmetres i els seus valors del millor model guardat. Després es carga la imatge que es vol testejar, la transformem en tensor i en treiem el seu output.
 
-**Preprocessing CACD**:
+Pel que fa al **preprocessing_cacd.py**, llegim cada imatge del dataset i el passem per un detector de cares. Si aquest detector de cares detecta 1 cara, aleshores aquesta es retalla i s'afegeix com a imatge a un nou directori que es crea. Si no en detecta cap cara, més d'una o hi ha un error, aquesta imatge no s'afegeix. Per tant, després de fer això, es creen 3 datasets, un per train, un per valid i un per test, amb només el nom del fitxer imatge i l'edat de les imatges que s'han guardat al nou directori.
 
 ## Execucions
 A continuació s'explicaran les diferents execucions i ajusts que s'han fet per arribar a un model final.
