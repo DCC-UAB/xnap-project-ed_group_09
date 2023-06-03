@@ -25,6 +25,13 @@ Per últim, **test.py**:
 
 ## Execucions
 A continuació s'explicaran les diferents execucions i ajusts que s'han fet per arribar a un model final.
+
+Primer de tot, aquesta és l'arquitectura de Resnet34 que utilitzem en pràcticament totes les execucions i és l'arquitectura dels nostres models finals:
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/44b6e833-8ca2-4983-b341-91dc92c6c63f)
+
+El model consta de 34 cappes residuals, on es divideixen en diferents BasickBlocks (de diferents color) i dins de cada bloc, apart de les convolucions, també hi trobem capes de batch normalization i funcions d’activació Relu. L’arquitectura acaba amb un AdaptiveAveragePool per reduir el tamany espacial dels feature maps, i per últim una capa FullyConnected, on, en el nostre cas, li demanarem un output de 1 ja que estem fent regressió.
+
 ### Appa Real
 Aquest dataset tenia 4k d'imatges en el train i 1.5k en el validation. En la lectura de les dades es van aplicar unes transformacions. Primer un resize i un centercrop perque totes les imatges tinguessin el mateix tamany i després de crear el tensor de la imatge es normalitzava. Es van dur a terme dos execucions fent ús de l'arquitectura resnet34 i la loss MSE. D'una banda es va fer feature extraction, on congelem totes les capes menys la última, i d'altra banda finetunning on cap capa esta congelada. Els resultats van ser els següents:
 
