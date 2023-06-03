@@ -4,7 +4,7 @@ En aquest projecte s'implementa varios models amb diferents datasets amb l'objec
 - Appa_real: 7.5k imatges
 - CACD (Cross Age Celebrity Dataset): 160k imatges de 2k celebrities diferents
 - AFAD (Asiatic Face Age Dataset): 160k imatges de persones asiàtiques
-Per cada dataset hi ha el seu folder personalitzat. Dins de cada folder hi trobem l'arxiu 'lectura_' + nom del dataset, 'model_' + nom del dataset, 'train_' + nom del dataset i 'main_' + nom del dataset. *En el cas del dataset CACD també hi trobem el 'preprocessing_cacd'.
+Per cada dataset hi ha el seu folder personalitzat. Dins de cada folder hi trobem l'arxiu 'lectura_' + nom del dataset, 'model_' + nom del dataset, 'train_' + nom del dataset i 'main_' + nom del dataset. *En el cas del dataset CACD també hi trobem el 'preprocessing_cacd'.*
 
 En aquest treball s'han fet diferents entrenament i s'han dut a terme diferents proves ajustant constantment els hiperparàmetres, les arquitecures dels models i els datasets per tal d'intentar obtenir un rendiment óptim.
 
