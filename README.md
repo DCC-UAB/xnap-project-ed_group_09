@@ -76,14 +76,11 @@ Per últim, hem provat un preprocessat d’aquestes dades per a veure si obtení
 
 ![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/c368c1e6-f153-4961-9a39-3d1078fbb853)
 
+### Resultats finals
 
+Aquests son els resultats finals dels millors models obtinguts amb els diferents datasets. En tots els casos sempre hi ha un marge de millora.
 
-
-
-
-
-
-
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/0725dae5-031c-484c-9164-e7d74069382c)
 
 ## Example Code
 
