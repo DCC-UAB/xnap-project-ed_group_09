@@ -22,8 +22,10 @@ Hi ha un arxiu **'main_' + nom del dataset + 'py.'** en cada folder. En aquest a
 Per últim, **test.py**:
 
 ## Execucions
+A continuació s'explicaran les diferents execucions i ajusts que s'han fet per arribar a un model final.
 ### Appa Real
-kjkjhkjh
+Aquest dataset tenia 4k d'imatges en el train i 1.5k en el validation. Primer es van dur a terme dos execucions fent ús de l'arquitectura resnet34. D'una banda es va fer feature extraction, on congelem totes les capes menys la última, i d'altra banda finetunning on cap capa esta congelada. Els resultats van ser els següents:
+
 
 ## Example Code
 The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
