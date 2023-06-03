@@ -25,6 +25,13 @@ Per últim, **test.py**:
 
 ## Execucions
 A continuació s'explicaran les diferents execucions i ajusts que s'han fet per arribar a un model final.
+
+Primer de tot, aquesta és l'arquitectura de Resnet34 que utilitzem en pràcticament totes les execucions i és l'arquitectura dels nostres models finals:
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/44b6e833-8ca2-4983-b341-91dc92c6c63f)
+
+El model consta de 34 cappes residuals, on es divideixen en diferents BasickBlocks (de diferents color) i dins de cada bloc, apart de les convolucions, també hi trobem capes de batch normalization i funcions d’activació Relu. L’arquitectura acaba amb un AdaptiveAveragePool per reduir el tamany espacial dels feature maps, i per últim una capa FullyConnected, on, en el nostre cas, li demanarem un output de 1 ja que estem fent regressió.
+
 ### Appa Real
 Aquest dataset tenia 4k d'imatges en el train i 1.5k en el validation. En la lectura de les dades es van aplicar unes transformacions. Primer un resize i un centercrop perque totes les imatges tinguessin el mateix tamany i després de crear el tensor de la imatge es normalitzava. Es van dur a terme dos execucions fent ús de l'arquitectura resnet34 i la loss MSE. D'una banda es va fer feature extraction, on congelem totes les capes menys la última, i d'altra banda finetunning on cap capa esta congelada. Els resultats van ser els següents:
 
@@ -42,13 +49,38 @@ En aquest gràfic veiem com descongelant també l'últim BasicBlock de l'arquite
 
 ![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/901d55b6-a833-4bf5-b6ef-61c7156e2ca7)
 
+### AFAD
+Amb el dataset dels asiàtics, llegim les dades i apliquem transformacions semblants a les esmentades anteriorment. Fem el data loader amb un batch size de 128. Les dades que tenim son 119k en el train i 13k en el validation. La primera execució que vam fer va ser un feature extraction i vam veure que la los del train s’estancava i a mesura que pasaven les époques no millorava. Una solució que vam pensar va ser aplicar una degradació al learning rate de tal manera que potser pogués sortir d’aquell mínim que creiem que s’havia quedat i trobar un óptim. 
 
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/cd6287c3-e6a3-48b7-8d6c-fd0779ddb1be)
 
+Veiem que desrpés de 8 époques aprox degradem el learning rate i la loss del validation que havia baixat i pujat en picat torna a descendir. Tot i així, veiem un overfitting clar comparant una losa de 27 del trait amb 86 del valid.
 
+Per això, vam provar de canviar el model al vgg16 i provar de fer ús de la eina drop-out, on desactivem aleatoriament algunes neurones de la última capa. Amb això intentem reduir el overfitting però no aconseguim aquest objectiu.
 
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/a19561f9-a5e3-4727-b78e-defc488a975c)
 
+Per últim, canviem la loss a L1 com hem fet anteriorment amb el dataset Appa Real. Aquest és el nostre model final per aquest dataset on fem un feature extraction amb la Resnet34 fent un drop-out en la capa fully Connected final. Concluim que no es un rendiment ideal ja que ens trobem overfitting i l’error es significant.
 
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/02faad37-bf72-40b2-b285-a8a914cc1228)
 
+### CACD
+
+Per últim, l’últim dataset que hem tractat ha sigut el dels famosos on contem 115k per el train i 12.7k pel validation. En aquest dataset també hem aplicat transformacions, hem utilitzat el model resnet34 i hem partit ja inicialment amb la L1 com a loss.
+
+En la primera gràfica es veu el rendiment del model entrenat amb finetunning i un valor de learning rate 0.0005. Aqui cal destacar que no en trobem tant overfitting com hem trobat als altres models.
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/492fd8b2-7c05-4266-9371-dba67873b817)
+
+Per últim, hem provat un preprocessat d’aquestes dades per a veure si obteníem un rendiment encara millor. Hem fet ús de les llibreries opencv i dlib per a que de les imatges en detectes les cares de la foto i si en detectava, la retalles i crees una altra foto retallada amb només la cara, i aquesta seria la que pasariem al model. Veiem que aquest canvi no ha sigut molt significatiu però ens ha servit per idear alguna proposta de millora pel futur.
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/c368c1e6-f153-4961-9a39-3d1078fbb853)
+
+### Resultats finals
+
+Aquests son els resultats finals dels millors models obtinguts amb els diferents datasets. En tots els casos sempre hi ha un marge de millora.
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/0725dae5-031c-484c-9164-e7d74069382c)
 
 ## Example Code
 
