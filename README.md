@@ -24,9 +24,27 @@ Per últim, **test.py**:
 ## Execucions
 A continuació s'explicaran les diferents execucions i ajusts que s'han fet per arribar a un model final.
 ### Appa Real
-Aquest dataset tenia 4k d'imatges en el train i 1.5k en el validation. Primer es van dur a terme dos execucions fent ús de l'arquitectura resnet34. D'una banda es va fer feature extraction, on congelem totes les capes menys la última, i d'altra banda finetunning on cap capa esta congelada. Els resultats van ser els següents:
+Aquest dataset tenia 4k d'imatges en el train i 1.5k en el validation. En la lectura de les dades es van aplicar unes transformacions. Primer un resize i un centercrop perque totes les imatges tinguessin el mateix tamany i després de crear el tensor de la imatge es normalitzava. Es van dur a terme dos execucions fent ús de l'arquitectura resnet34 i la loss MSE. D'una banda es va fer feature extraction, on congelem totes les capes menys la última, i d'altra banda finetunning on cap capa esta congelada. Els resultats van ser els següents:
 
 ![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/22553b3b-90d3-4d2d-8312-f684dbe090d5)
+
+En la imatge veiem la loss del train i del validation en les diferents execucions. L'eix de les x, son les époques x2, és a dir, en aquest cas s'han fet 15 époques. Com es veu a la imatge, obtenim un model amb overfitting clar pel que fa al finetunning i un rendiment poc óptim amb el feature extraction. Aquest overfitting hem cregut que pot ser donat a la poca quantitat de dades. És per això que fem un data augmentation i passem de 4k a 12k d'imatges en el train. Per fer el data augmentation es fa per cada imatge un random rotation i una transformació de color on apliquem diferents valors de brillantor, contrats, saturació,.. Executem igual que abans ajustant ara si el learning rate en el finetunning a 0.0001. 
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/a5db317d-bb7e-4197-9d62-d81c5eeeaf43)
+
+Veiem que el rendiment del finetunning en el train és molt bo pero hi ha un overfitting clar. Aleshores el que vam pensar va ser fer feature extraction pero descongelant alguna capa més buscant un terme mig entre finetunning i feature extraction. També vam canviar la loss a L1 i vam provar una arquitectura mobilenetV2, una menys complexa, per veure com rendia el model.
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/95c3004f-a7fc-423d-b41d-296a5af7017e)
+
+En aquest gràfic veiem com descongelant també l'últim BasicBlock de l'arquitectura resnet34 (mix7_L1_Resnet34) obtenim un rendiment millor que només descongelant el average pooling i la última capa lineal o utilitzant una altra arquitectura. Un cop veiem el rendiment de cada model, concluim que el millor model obtingut és el model resnet34 descongelant l''últim BasicBlock. Executant-lo amb 20 époques obtenim un rendiment óptim en el train però un overfitting clar en el validation que com a millora s'hauria d'intentar reduir.
+
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/901d55b6-a833-4bf5-b6ef-61c7156e2ca7)
+
+
+
+
+
+
 
 
 
