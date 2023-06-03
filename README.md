@@ -11,14 +11,11 @@ Per cada dataset hi ha el seu folder personalitzat. Dins de cada folder hi trobe
 En aquest treball s'han fet diferents entrenaments i s'han dut a terme diferents proves ajustant constantment els hiperparàmetres, les arquitecures dels models i els datasets per tal d'intentar obtenir un rendiment óptim. Durant tot el procés, s'ha fet ús del Weight & Biases per tal de fer un seguiment de l'aprenentatge dels nostres models i visualitzar els resultats.
 
 ## Estructura del codi
-En cada folder hi trobem l'arxiu 'lectura_'+ nom del dataset + '.py'. En aquest arxiu hi trobem una classe personalitzada per cada dataset on llegeix les imatges i les edats. En aquesta classe, se li pasa com a paràmetre el path del directori on es troben les imatges, el path d'on esta el csv amb el nom de l'arxiu de cada imatge i la edat corresponent i les transformacions en el cas que es vulguin aplicar, sinó no cal pasar-ho com a paràmetre.
+En cada folder hi trobem l'arxiu **'lectura_'+ nom del dataset + '.py'**. En aquest arxiu hi trobem una classe personalitzada per cada dataset on llegeix les imatges i les edats. En aquesta classe, se li pasa com a paràmetre el path del directori on es troben les imatges, el path d'on esta el csv amb el nom de l'arxiu de cada imatge i la edat corresponent i les transformacions en el cas que es vulguin aplicar, sinó no cal pasar-ho com a paràmetre.
 
-També hi trobem el 'model_' + nom del dataset + '.py'. En aquest arxiu python hi trobem la funció que crea el model. En cada folder hi trobem una configuració diferent ja que està personalitzat per cada dataset. En tots tres a la funció se li pasa el tipus de transfer learning (finetunning o feature extraction). S'utilitza transfer learning en cada un amb l'arquitectura resnet34 pre-entrenada.
+També hi trobem el **'model_' + nom del dataset + '.py'**. En aquest arxiu python hi trobem la funció que crea el model. En cada folder hi trobem una configuració diferent ja que està personalitzat per cada dataset. En tots tres a la funció se li pasa el tipus de transfer learning (finetunning o feature extraction). S'utilitza transfer learning en cada un amb l'arquitectura resnet34 pre-entrenada.
 
-En cada folder veiem un 'train_' + nom del dataset + 'py.' En aquest arxiu està la funcio train. Se li pasa com a paràmetres el model creat, els dataloaders, la loss function, l'optimizer, el número de époques que es vol entrenar el model, el nom del projecte wandb i el nom de l'execució i per últim el device. Aquesta funció entrena el model amb el dataloader del train, l'evalua amb el dataloader del validation i retorna el state del millor model trobat i les losses.
-
-En aquest repositori hi trobem 
-You must create as many folders as you consider. You can use the proposed structure or replace it by the one in the base code that you use as starting point. Do not forget to add Markdown files as needed to explain well the code and how to use it.
+En cada folder veiem un **'train_' + nom del dataset + 'py.'** En aquest arxiu està la funcio train. Se li pasa com a paràmetres el model creat, els dataloaders, la loss function, l'optimizer, el número de époques que es vol entrenar el model, el nom del projecte wandb i el nom de l'execució i per últim el device. Aquesta funció entrena el model amb el dataloader del train, l'evalua amb el dataloader del validation i retorna el state del millor model trobat i les losses.
 
 ## Execucions
 
