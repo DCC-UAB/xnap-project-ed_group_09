@@ -25,6 +25,8 @@ Per últim, **test.py**:
 A continuació s'explicaran les diferents execucions i ajusts que s'han fet per arribar a un model final.
 ### Appa Real
 Aquest dataset tenia 4k d'imatges en el train i 1.5k en el validation. Primer es van dur a terme dos execucions fent ús de l'arquitectura resnet34. D'una banda es va fer feature extraction, on congelem totes les capes menys la última, i d'altra banda finetunning on cap capa esta congelada. Els resultats van ser els següents:
+![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/22553b3b-90d3-4d2d-8312-f684dbe090d5)
+
 
 
 ## Example Code
