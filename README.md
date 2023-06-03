@@ -1,6 +1,12 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11122274&assignment_repo_type=AssignmentRepo)
 # XNAP-Segons la AI, quina edat aparentes?
-En aquest projecte s'implementa varios models amb diferents datasets amb l'objectiu de predir l'edat d'una persona a partir d'una imatge seva. 
+En aquest projecte s'implementa varios models amb diferents datasets amb l'objectiu de predir l'edat d'una persona a partir d'una imatge. En aquest projecte s'ha treballat amb 3 datasets diferents:
+- Appa_real: 7.5k imatges
+- CACD (Cross Age Celebrity Dataset): 160k imatges de 2k celebrities diferents
+- AFAD (Asiatic Face Age Dataset): 160k imatges de persones asiàtiques
+Per cada dataset hi ha el seu folder personalitzat. Dins de cada folder hi trobem l'arxiu 'lectura_' + nom del dataset, 'model_' + nom del dataset, 'train_' + nom del dataset i 'main_' + nom del dataset. *En el cas del dataset CACD també hi trobem el 'preprocessing_cacd'.
+
+En aquest treball s'han fet diferents entrenament i s'han dut a terme diferents proves ajustant constantment els hiperparàmetres, les arquitecures dels models i els datasets per tal d'intentar obtenir un rendiment óptim.
 
 ## Estructura del codi
 En aquest repositori hi trobem 
