@@ -2,7 +2,8 @@
 # XNAP-Segons la AI, quina edat aparentes?
 En aquest projecte s'implementa varios models amb diferents datasets amb l'objectiu de predir l'edat d'una persona a partir d'una imatge seva. 
 
-## Code structure
+## Estructura del codi
+En aquest repositori hi trobem 
 You must create as many folders as you consider. You can use the proposed structure or replace it by the one in the base code that you use as starting point. Do not forget to add Markdown files as needed to explain well the code and how to use it.
 
 ## Example Code
