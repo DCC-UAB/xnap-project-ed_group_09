@@ -5,7 +5,7 @@ En aquest projecte s'implementa varios models amb diferents datasets amb l'objec
 - CACD (Cross Age Celebrity Dataset): 160k imatges de 2k celebrities diferents
 - AFAD (Asiatic Face Age Dataset): 160k imatges de persones asiàtiques
 
-Per cada dataset hi ha el seu folder personalitzat. Dins de cada folder hi trobem l'arxiu 'lectura_' + nom del dataset + '.py', 'model_' + nom del dataset + '.py', 'train_' + nom del dataset + '.py', 'main_' + nom del dataset + '.py' i els arxius '.csv' que s'utilitzen per llegir les dades. En el cas del Appa_real, els arxius '.csv' no esta dins d'aquest repositori. Més endavant, s'explica com descarregar-se aquests datasets.     
+Per cada dataset hi ha el seu folder personalitzat. Dins de cada folder hi trobem l'arxiu 'lectura_' + nom del dataset + '.py', 'model_' + nom del dataset + '.py', 'train_' + nom del dataset + '.py', 'main_' + nom del dataset + '.py', el requirements.txt i els arxius '.csv' que s'utilitzen per llegir les dades. En el cas del Appa_real, els arxius '.csv' no esta dins d'aquest repositori. Més endavant, s'explica com descarregar-se aquests datasets.     
   *En el cas del dataset CACD també hi trobem el 'preprocessing_cacd'.*
 
 En aquest treball s'han fet diferents entrenaments i s'han dut a terme diferents proves ajustant constantment els hiperparàmetres, les arquitecures dels models i els datasets per tal d'intentar obtenir un rendiment óptim. Durant tot el procés, s'ha fet ús del Weight & Biases per tal de fer un seguiment de l'aprenentatge dels nostres models i visualitzar els resultats.
@@ -82,6 +82,20 @@ Aquests son els resultats finals dels millors models obtinguts amb els diferents
 
 ![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/0725dae5-031c-484c-9164-e7d74069382c)
 
+### Tests
+
+Després d'extreure els models ideals, provem a fer algun tests amb els dos millors models d'una foto d'un dels contribuidors d'aquest treball:
+
+<img src="https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/05af4fc6-2a75-4610-877f-820259a7054e" alt="Foto Arnau test 1" width="300" height="400">
+
+D'aquesta foto, el model Appa-Real predeix que en té 14 anys. Mentre que el CACD diu que en té 33 anys. Aquesta diferència d'edat predita creiem que pot ser deguda a que en dataset dels famosos conté imatges de famosos on ells estan maquillats i ben pulits i aparenten menys edat de la que tenen, per això, una persona normal el model pot creure que té més anys dels que té.
+
+També hem volgut fer una prova amb una noia per veure quin seria el resultat:
+
+<img src="https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/c2867e59-896e-4483-b016-f56c0aa795ab" alt="Foto Blanca test 2" width="300" height="400">
+
+El model Appa-Real predeix que en té 15 anys mentre que el dels famosos diu que en té 32. En aquest cas, es repeteix una tendència que també es pot observar i que ja hem comentat en el test anterior.
+
 ## Example Code
 
 En aquest projecte es treballa amb 3 datasets. Per descarregar-se cada un d'ells, ho expliquem a continuació:
@@ -98,19 +112,20 @@ https://github.com/John-niu-07/tarball en aquest github esta el dataset separat 
 
 Tots tres per pasar-los a la màquina virtual i fer-los servir en Azure, es va fer servir el programa FileZilla, que ens permetia conectar-nos a la màquina azure i pasar arxius del local a la màquina.
 
+Per executar els arxius de cada folder (dataset), primer cal instal·lar-se les llibreries corresponents amb les seves versions. 
+```
+pip install -r requirements.txt
+```
+Un cop instalades, activem conda.
+```
+conda activate base
+```
+I després ja es poden executar els arxius corresponents.
 
-Com ens descarreguem cada dataset. Com executariem un model. Com executariem el test i que es el que retornaria.
-The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
-
-Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml](https://github.com/DCC-UAB/XNAP-Project/environment.yml) file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
 ```
-conda activate xnap-example
+python nom_arxiu.py
 ```
-
-To run the example code:
-```
-python main.py
-```
+*Alguns arxius python estan configurats amb una ruta als datasets específica. Un cop descarregats els datasets, canvieu les rutes per el vostre cas.*
 
 
 
