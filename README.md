@@ -86,7 +86,7 @@ Aquests son els resultats finals dels millors models obtinguts amb els diferents
 
 Després d'extreure els models ideals, provem a fer algun tests amb els dos millors models d'una foto d'un dels contribuidors d'aquest treball:
 
-![foto_arnau](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/05af4fc6-2a75-4610-877f-820259a7054e)
+<img src="https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/05af4fc6-2a75-4610-877f-820259a7054e" alt="Foto Arnau test 1" width="100" height="100">
 
 D'aquesta foto, el model Appa-Real predeix que en té 14 anys. Mentre que el CACD diu que en té 33 anys. Aquesta diferència d'edat predita creiem que pot ser deguda a que en dataset dels famosos conté imatges de famosos on ells estan maquillats i ben pulits i aparenten menys edat de la que tenen, per això, una persona normal el model pot creure que té més anys dels que té.
 
