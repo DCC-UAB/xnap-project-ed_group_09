@@ -87,11 +87,11 @@ Aquests son els resultats finals dels millors models obtinguts amb els diferents
 En aquest projecte es treballa amb 3 datasets. Per descarregar-se cada un d'ells, ho expliquem a continuació:
 
 - Appa-Real:
-url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
-datasets.utils.download_and_extract_archive(url, '../AppaRealAge')
+*url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
+datasets.utils.download_and_extract_archive(url, '../AppaRealAge')*
 
 - CACD:
-https://bcsiriuschen.github.io/CARC/ en aquest enllaç hi h al'opció de descarregar-se un .tar.gz amb totes les imatges
+https://bcsiriuschen.github.io/CARC/ en aquest enllaç hi ha l'opció de descarregar-se un .tar.gz amb totes les imatges
 
 - AFAD:
 https://github.com/John-niu-07/tarball en aquest github esta el dataset separat per peces i utilitzant shell script amb l'arxiu restore.sh s'ajunten totes les peces per crear el dataset original.
