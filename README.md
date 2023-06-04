@@ -125,19 +125,7 @@ I després ja es poden executar els arxius corresponents.
 ```
 python nom_arxiu.py
 ```
- 
- Com executariem un model. Com executariem el test i que es el que retornaria.
-The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
-
-Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml](https://github.com/DCC-UAB/XNAP-Project/environment.yml) file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
-```
-conda activate xnap-example
-```
-
-To run the example code:
-```
-python main.py
-```
+*Alguns arxius python estan configurats amb una ruta als datasets específica. Un cop descarregats els datasets, canvieu les rutes per el vostre cas.*
 
 
 
