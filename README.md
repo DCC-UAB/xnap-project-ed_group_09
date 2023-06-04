@@ -84,6 +84,21 @@ Aquests son els resultats finals dels millors models obtinguts amb els diferents
 
 ## Example Code
 
+En aquest projecte es treballa amb 3 datasets. Per descarregar-se cada un d'ells, ho expliquem a continuació:
+
+- Appa-Real:
+*url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
+datasets.utils.download_and_extract_archive(url, '../AppaRealAge')*
+
+- CACD:
+https://bcsiriuschen.github.io/CARC/ en aquest enllaç hi ha l'opció de descarregar-se un .tar.gz amb totes les imatges
+
+- AFAD:
+https://github.com/John-niu-07/tarball en aquest github esta el dataset separat per peces i utilitzant shell script amb l'arxiu restore.sh s'ajunten totes les peces per crear el dataset original.
+
+Tots tres per pasar-los a la màquina virtual i fer-los servir en Azure, es va fer servir el programa FileZilla, que ens permetia conectar-nos a la màquina azure i pasar arxius del local a la màquina.
+
+
 Com ens descarreguem cada dataset. Com executariem un model. Com executariem el test i que es el que retornaria.
 The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
 
