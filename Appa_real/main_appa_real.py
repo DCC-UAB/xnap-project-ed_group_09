@@ -31,7 +31,7 @@ print("Torchvision Version: ",torchvision.__version__)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 #url= 'http://158.109.8.102/AppaRealAge/appa-real-release.zip'
-#datasets.utils.download_and_extract_archive(url, '../AppaRealAge')
+#datasets.utils.download_and_extract_archive(url, '../AppaRealAge') #CHANGE FOR YOUR CASE
 
 """Creem projecte wandb"""
 """
@@ -62,21 +62,16 @@ augmentation_transform = transforms.Compose([
     transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
 ])
 
-data_dir = "/home/alumne/AppaRealAge/appa-real-release"
+data_dir = "/home/alumne/AppaRealAge/appa-real-release" #CHANGE FOR YOUR CASE
 
 train_dataset = FaceDataset(data_dir, "train",transform=custom_transform)
-#train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True,
-#                          num_workers=2, drop_last=True)
 
-#print('Train len:',len(train_loader.dataset))
-
-# Crea un nuevo conjunto de datos aplicando las transformaciones de data augmentation
 augmented_dataset = ConcatDataset([train_dataset, train_dataset, train_dataset])
 
-# Aplica las transformaciones de data augmentation al conjunto de datos
+
 augmented_dataset.transforms = augmentation_transform
 
-# Crea el dataloader con el nuevo conjunto de datos aumentado
+
 train_loader = DataLoader(augmented_dataset, batch_size=32, shuffle=True, num_workers=2, drop_last=True)
 
 print('Train post aug len:',len(train_loader.dataset))
@@ -98,7 +93,6 @@ name_run='mix7_aug_0.001_32_L1_r34'
 #criterion = nn.MSELoss()
 criterion = nn.L1Loss()
 
-#criterion = nn.CrossEntropyLoss()
 
 # Number of epochs to train for 
 num_epochs = 20
@@ -121,7 +115,7 @@ model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft
 
 wandb.finish()
 
-ruta_archivo = 'model_1.pth'
+ruta_archivo = 'model_1.pth' #CHANGE FOR YOUR CASE
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)

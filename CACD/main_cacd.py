@@ -27,10 +27,10 @@ print("Torchvision Version: ",torchvision.__version__)
 # Detect if we have a GPU available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_train_centered.csv'
-VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_valid_centered.csv'
-TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_test_centered.csv'
-IMAGE_PATH = '/home/alumne/datasets/CACD2000-centered'
+TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_train_centered.csv' #CHANGE FOR YOUR CASE
+VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_valid_centered.csv' #CHANGE FOR YOUR CASE
+TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/CACD/cacd_test_centered.csv' #CHANGE FOR YOUR CASE
+IMAGE_PATH = '/home/alumne/datasets/CACD2000-centered' #CHANGE FOR YOUR CASE
 BATCH_SIZE=256
 
 """Creem projecte wandb"""
@@ -106,7 +106,7 @@ name_run='mknlkn'
 # Setup the loss fxn
 #criterion = nn.MSELoss()
 criterion = nn.L1Loss()
-#criterion = nn.CrossEntropyLoss()
+
 
 # Number of epochs to train for 
 num_epochs = 15
@@ -126,7 +126,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_fe_prep_cacd.pth'
+ruta_archivo = 'model_fe_prep_cacd.pth' #CHANGE FOR YOUR CASE
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)

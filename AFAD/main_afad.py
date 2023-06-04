@@ -27,10 +27,10 @@ print("Torchvision Version: ",torchvision.__version__)
 # Detect if we have a GPU available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_train.csv'
-VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_valid.csv'
-TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_test.csv'
-IMAGE_PATH = '/home/alumne/datasets/AFAD-Full'
+TRAIN_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_train.csv' #CHANGE FOR YOUR CASE
+VALID_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_valid.csv' #CHANGE FOR YOUR CASE
+TEST_CSV_PATH = '/home/alumne/xnap-project-ed_group_09/AFAD/afad_test.csv' #CHANGE FOR YOUR CASE
+IMAGE_PATH = '/home/alumne/datasets/AFAD-Full' #CHANGE FOR YOUR CASE
 BATCH_SIZE = 128
 
 #Creem projecte wandb
@@ -126,7 +126,7 @@ dataloaders_dict['val']=valid_loader
 # Train and evaluate
 model, losses = train_model_mse(model, dataloaders_dict, criterion, optimizer_ft, num_epochs,name_project,name_run,device)
 
-ruta_archivo = 'model_1.pth'
+ruta_archivo = 'model_1.pth' #CHANGE FOR YOUR CASE
 
 # Guarda el modelo en el archivo
 torch.save(model.state_dict(), ruta_archivo)
