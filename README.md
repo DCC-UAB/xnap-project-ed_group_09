@@ -82,6 +82,20 @@ Aquests son els resultats finals dels millors models obtinguts amb els diferents
 
 ![image](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/0725dae5-031c-484c-9164-e7d74069382c)
 
+### Tests
+
+Després d'extreure els models ideals, provem a fer algun tests amb els dos millors models d'una foto d'un dels contribuidors d'aquest treball:
+
+![foto_arnau](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/05af4fc6-2a75-4610-877f-820259a7054e)
+
+D'aquesta foto, el model Appa-Real predeix que en té 14 anys. Mentre que el CACD diu que en té 33 anys. Aquesta diferència d'edat predita creiem que pot ser deguda a que en dataset dels famosos conté imatges de famosos on ells estan maquillats i ben pulits i aparenten menys edat de la que tenen, per això, una persona normal el model pot creure que té més anys dels que té.
+
+També hem volgut fer una prova amb una noia per veure quin seria el resultat:
+
+![foto_blanca](https://github.com/DCC-UAB/xnap-project-ed_group_09/assets/101926010/c2867e59-896e-4483-b016-f56c0aa795ab)
+
+El model Appa-Real predeix que en té 15 anys mentre que el dels famosos diu que en té 32. En aquest cas, es repeteix una tendència que també es pot observar i que ja hem comentat en el test anterior.
+
 ## Example Code
 
 En aquest projecte es treballa amb 3 datasets. Per descarregar-se cada un d'ells, ho expliquem a continuació:
