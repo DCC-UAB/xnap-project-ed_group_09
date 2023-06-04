@@ -98,8 +98,21 @@ https://github.com/John-niu-07/tarball en aquest github esta el dataset separat 
 
 Tots tres per pasar-los a la màquina virtual i fer-los servir en Azure, es va fer servir el programa FileZilla, que ens permetia conectar-nos a la màquina azure i pasar arxius del local a la màquina.
 
+Per executar els arxius de cada folder (dataset), primer cal instal·lar-se les llibreries corresponents amb les seves versions. 
+```
+pip install -r requirements.txt
+```
+Un cop instalades, activem conda.
+```
+conda activate base
+```
+I després ja es poden executar els arxius corresponents.
 
-Com ens descarreguem cada dataset. Com executariem un model. Com executariem el test i que es el que retornaria.
+```
+python nom_arxiu.py
+```
+ 
+ Com executariem un model. Com executariem el test i que es el que retornaria.
 The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
 
 Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml](https://github.com/DCC-UAB/XNAP-Project/environment.yml) file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
