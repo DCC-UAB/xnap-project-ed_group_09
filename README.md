@@ -125,7 +125,7 @@ I després ja es poden executar els arxius corresponents.
 ```
 python nom_arxiu.py
 ```
-*Alguns arxius python estan configurats amb una ruta als datasets específica. Un cop descarregats els datasets, canvieu les rutes per el vostre cas.*
+*Alguns arxius python estan configurats amb una ruta als datasets específica. Aquestes variables amb rutes personalitzades estan marcades amb un comentari '#CHANGE FOR YOUR CASE'. Un cop descarregats els datasets, canvieu les rutes per el vostre cas.*
 
 
 
